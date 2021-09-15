@@ -1,0 +1,195 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using GMTVendorEvaluationWebApp.Data;
+using GMTVendorEvaluationWebApp.Models;
+using GMTVendorEvaluationWebApp.Interfaces;
+
+namespace GMTVendorEvaluationWebApp.Controllers
+{
+    public class EvaluationController : Controller
+    {
+        private readonly IEvaluationServiceInterface _evaluationService
+        private readonly EvaluationContext _context;
+
+        public EvaluationController(EvaluationContext context, IEvaluationServiceInterface evaluationService)
+        {
+            _context = context;
+            _evaluationService = evaluationService;
+        }
+
+        // GET: Evaluation
+        public async Task<IActionResult> Index()
+        {
+            var evaluations = _context.Evaluations
+            .Include(c => c.Product_Service).Include(p => p.Criteria)
+            .AsNoTracking();
+            return View(await evaluations.ToListAsync());
+        }
+
+        // GET: Evaluation/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var evaluation = await _context.Evaluations
+                .Include(e => e.Criteria)
+                .Include(e => e.Product_Service)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.evaluationID == id);
+            if (evaluation == null)
+            {
+                return NotFound();
+            }
+
+            return View(evaluation);
+        }
+
+        // GET: Evaluation/Create
+        public IActionResult Create()
+        {
+            PopulateProductsDropDownList();
+            PopulateCriteriaDropDownList();
+            return View();
+        }
+
+        // POST: Evaluation/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("evaluationID,product_serviceID,criteriaID,Grade")] Evaluation evaluation)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(evaluation);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            PopulateProductsDropDownList();
+            PopulateCriteriaDropDownList();
+            return View(evaluation);
+        }
+
+        // GET: Evaluation/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var evaluation = await _context.Evaluations.
+                AsNoTracking().
+                FirstOrDefaultAsync(m => m.evaluationID == id);
+            if (evaluation == null)
+
+            {
+                return NotFound();
+            }
+            PopulateProductsDropDownList();
+            PopulateCriteriaDropDownList();
+            return View(evaluation);
+        }
+
+        // POST: Evaluation/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost(int? id, [Bind("evaluationID,product_serviceID,criteriaID,Grade")] Evaluation evaluation)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var evaluationToUpdate = await _context.Evaluations
+                .FirstOrDefaultAsync(c => c.evaluationID == id);
+
+            if (await TryUpdateModelAsync<Evaluation>(evaluationToUpdate,
+                "",
+                c => c.product_serviceID, c => c.criteriaID, c => c.Grade))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            PopulateProductsDropDownList(evaluationToUpdate.product_serviceID);
+            PopulateCriteriaDropDownList(evaluationToUpdate.criteriaID);
+            return View(evaluation);
+        }
+
+        private void PopulateProductsDropDownList(object selectedProduct = null)
+        {
+            var productsQuery = from d in _context.Products_Services
+                                orderby d.product_name
+                                select d;
+            ViewBag.product_serviceID = new SelectList(productsQuery.AsNoTracking(), "product_serviceID", "product_name", selectedProduct);
+
+        }
+
+        private void PopulateCriteriaDropDownList(object selectedCriteria = null)
+        {
+            var criteriaQuery = from d in _context.Criteria
+                               orderby d.criteria_name
+                               select d;
+            ViewBag.criteriaID = new SelectList(criteriaQuery.AsNoTracking(), "criteriaID", "criteria_name", selectedCriteria);
+        }
+
+        // GET: Evaluation/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var evaluation = await _context.Evaluations
+                .Include(e => e.Criteria)
+                .Include(e => e.Product_Service)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.evaluationID == id);
+            if (evaluation == null)
+            {
+                return NotFound();
+            }
+
+            return View(evaluation);
+        }
+
+        // POST: Evaluation/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var evaluation = await _context.Evaluations.FindAsync(id);
+            _context.Evaluations.Remove(evaluation);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool EvaluationExists(int id)
+        {
+            return _context.Evaluations.Any(e => e.evaluationID == id);
+        }
+    }
+}

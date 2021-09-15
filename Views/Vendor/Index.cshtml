@@ -1,0 +1,65 @@
+﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.Vendor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.company_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contact_person)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.company_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type_of_business)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.company_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contact_person)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.company_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type_of_business)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.vendorID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.vendorID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.vendorID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

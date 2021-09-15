@@ -1,0 +1,64 @@
+﻿@model GMTVendorEvaluationWebApp.Models.Product_Service
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product/Service</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.product_name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.product_name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date_delivered)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date_delivered)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vendor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vendor.company_name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.department_name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Evaluations)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Criteria</th>
+                    <th>Grade</th>
+                </tr>
+                @foreach (var item in Model.Evaluations)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Criteria.criteria_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.product_serviceID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
