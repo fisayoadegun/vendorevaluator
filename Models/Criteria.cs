@@ -14,5 +14,11 @@ namespace GMTVendorEvaluationWebApp.Models
         public string criteria_name { get; set; }
 
         public virtual IList<Evaluation> Evaluations { get; set; }
+
+        public int GetCriteriaCount()
+        {
+            return criteria_name == null ? 0 : criteria_name.Count();
+        }
+
     }
 }

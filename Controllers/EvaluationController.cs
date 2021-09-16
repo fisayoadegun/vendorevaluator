@@ -13,7 +13,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
 {
     public class EvaluationController : Controller
     {
-        private readonly IEvaluationServiceInterface _evaluationService
+        private readonly IEvaluationServiceInterface _evaluationService;
         private readonly EvaluationContext _context;
 
         public EvaluationController(EvaluationContext context, IEvaluationServiceInterface evaluationService)

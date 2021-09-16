@@ -13,6 +13,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
     public class Product_ServiceController : Controller
     {
         private readonly EvaluationContext _context;
+        
 
         public Product_ServiceController(EvaluationContext context)
         {
@@ -22,10 +23,37 @@ namespace GMTVendorEvaluationWebApp.Controllers
         // GET: Product_Service
         public async Task<IActionResult> Index()
         {
-            var products_services = _context.Products_Services
-            .Include(c => c.Department).Include(p => p.Vendor)
-            .AsNoTracking();
-            return View(await products_services.ToListAsync());
+            var products_services = await _context.Products_Services
+                .Include(x => x.Vendor)
+                .Include(x => x.Evaluations)
+                .Include(x => x.Department)
+                .AsNoTracking().ToListAsync();
+
+
+            var evaluations = new List<EvaluationViewModel>();
+            foreach (var item in products_services)
+            {
+                var evaluation = new EvaluationViewModel();
+                evaluation.ProductName = item.product_name;
+                evaluation.CompanyName = item.Vendor.company_name;
+                evaluation.DepartmentName = item.Department.department_name;
+                evaluation.Date_Delivered = item.Date_delivered;
+                evaluation.product_id = item.product_serviceID;
+
+                var criteria = await _context.Criteria.ToListAsync();
+
+                var totalscore = (double)(criteria.Count() * 6);
+
+                var evaluationscore = item.Evaluations.Select(a => ((int)a.Grade));
+
+                var evaluationscorecriteria = evaluationscore.Sum();
+                evaluation.Score = evaluationscorecriteria;
+                var total_evaluation_score = (double)(evaluationscorecriteria / totalscore);
+                evaluation.Percentage = Math.Round((double)(total_evaluation_score * 100));
+
+                evaluations.Add(evaluation);
+            }
+            return View(evaluations);
             
         }
 

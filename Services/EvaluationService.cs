@@ -15,15 +15,24 @@ namespace GMTVendorEvaluationWebApp.Services
         private readonly EvaluationContext _context;
         public EvaluationService(EvaluationContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
-        public IQueryable<Evaluation> GetAll()
-        {
-            return _context.Evaluations.
-                Include(x => x.Product_Service).
-                Include(x => x.Criteria).
-                Include(x => x.Grade).AsQueryable();
-        }
+        //public IEnumerable<Evaluation> GetAll()
+        //{
+        //    return _context.Evaluations.
+        //        Include(x => x.Product_Service).
+        //        Include(x => x.Criteria).
+        //        Include(x => x.Grade).AsQueryable();
+            
+        //}
+
+        //public Evaluation GetEvaluationByProduct(int id)
+        //{
+            
+        //    //var data = this.GetAll();
+        //    //decimal totalenum = data.(Enum.GetValues(typeof(Grade)).Cast<byte>().Sum(x => x));
+        //    //return _context.Evaluations.FirstOrDefault(c => c.product_serviceID == id);
+        //}
     }
 }

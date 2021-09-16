@@ -23,7 +23,7 @@ namespace GMTVendorEvaluationWebApp.Models
         Satisfied,
 
         [Display(Name = "Very Satisfied")]
-        Very_Satisfied
+        Very_Satisfied,
     }
     public class Evaluation
     {
@@ -41,6 +41,5 @@ namespace GMTVendorEvaluationWebApp.Models
         [Display(Name = "Product/Service")]
         public virtual Product_Service Product_Service { get; set; }
         public virtual Criteria Criteria { get; set; }
-
     }
 }

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GMTVendorEvaluationWebApp.Models
+using GMTVendorEvaluationWebApp.Models;
 
 namespace GMTVendorEvaluationWebApp.Interfaces
 {
     public interface IEvaluationServiceInterface
     {
-        IEnumerable<Evaluation> GetAll();
+        //IQueryable<Evaluation> GetAll();
 
-        Evaluation GetEvaluationByProduct(int product_serviceID);
+        //Evaluation GetEvaluationByProduct(int product_serviceID);
     }
 }

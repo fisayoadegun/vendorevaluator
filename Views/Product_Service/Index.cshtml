@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.Product_Service>
+﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.EvaluationViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.product_name)
+                Product Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date_delivered)
+                Date Delivered
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendor)
+                Vendor
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Department)
+                Deparment
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Percentage)
+            </th>
+            <th>
+                Grade
             </th>
             <th></th>
         </tr>
@@ -31,23 +40,62 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.product_name)
+                @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date_delivered)
+                @Html.DisplayFor(modelItem => item.Date_Delivered)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Vendor.company_name)
+                @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Department.department_name)
+                @Html.DisplayFor(modelItem => item.DepartmentName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.product_serviceID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.product_serviceID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.product_serviceID">Delete</a>
+                @Html.DisplayFor(modelItem => item.Score)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Percentage)%
+            </td>
+            @{
+                if (item.Percentage >= 80 && item.Percentage <= 100)
+                {
+                    <td>
+                        GREAT
+                    </td>
+                }
+
+                else if (item.Percentage >= 56 && item.Percentage <= 79)
+                {
+                    <td>
+                        GOOD
+                    </td>
+                }
+
+                else if (item.Percentage >= 46 && item.Percentage <= 55)
+                {
+                    <td>
+                        WATCHLIST
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        REPLACE
+                    </td>
+                }
+
+
+            }
+
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.product_id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.product_id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.product_id">Delete</a>
+           
+        </td>
         </tr>
 }
     </tbody>
+    
 </table>
