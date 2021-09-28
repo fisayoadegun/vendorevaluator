@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rHgOepUXsdqGnhj9ba2oQTjY/kSN+TF8/ZTZBRMKSoKP/Kfej4bDEplA5JapK/aAnzapU8eTiz4hBcgyN/mCOg==",
+  "dgSpecHash": "iSeQZ+36DqHCjaRmbvWF9LK74KjdRDOmGHYe6h3q0V/FPU+ekEHoKspnM2sD+1nxT99JkHtvueUI6XbkyLGLUQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADEGUN FISAYO\\Documents\\GMTVendorEvaluationWebApp\\GMTVendorEvaluationWebApp.csproj",
+  "projectFilePath": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.9\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.9.nupkg.sha512",

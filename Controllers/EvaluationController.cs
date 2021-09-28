@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GMTVendorEvaluationWebApp.Data;
 using GMTVendorEvaluationWebApp.Models;
+using GMTVendorEvaluationWebApp.ViewModels;
 using GMTVendorEvaluationWebApp.Interfaces;
 
 namespace GMTVendorEvaluationWebApp.Controllers
@@ -53,10 +54,11 @@ namespace GMTVendorEvaluationWebApp.Controllers
         }
 
         // GET: Evaluation/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
             PopulateProductsDropDownList();
             PopulateCriteriaDropDownList();
+            ViewData["productid"] = id;
             return View();
         }
 
@@ -65,16 +67,80 @@ namespace GMTVendorEvaluationWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("evaluationID,product_serviceID,criteriaID,Grade")] Evaluation evaluation)
+        public async Task<IActionResult> Create(CriteriaOptions evaluation)
         {
-            if (ModelState.IsValid)
+            foreach (var item in _context.Criteria.ToList())
             {
-                _context.Add(evaluation);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (item.criteria_name == "Timeliness")
+                {
+                    
+                    var evaluate = new Evaluation
+                    {
+                        criteriaID = item.criteriaID,
+                        product_serviceID = evaluation.productId,
+                        Grade = (Grade)int.Parse(evaluation.timeliness)
+                    };
+
+                    _context.Add(evaluate);
+                }
+                else if (item.criteria_name == "Quality of service")
+                {
+                    var evaluate = new Evaluation
+                    {
+                        criteriaID = item.criteriaID,
+                        product_serviceID = evaluation.productId,
+                        Grade = (Grade)int.Parse(evaluation.quality_of_products)
+                    };
+
+                    _context.Add(evaluate);
+                }
+                else if (item.criteria_name == "Competitiveness of Costing")
+                {
+                    var evaluate = new Evaluation
+                    {
+                        criteriaID = item.criteriaID,
+                        product_serviceID = evaluation.productId,
+                        Grade = (Grade)int.Parse(evaluation.competitiveness_of_costing)
+                    };
+
+                    _context.Add(evaluate);
+                }
+                else if (item.criteria_name == "Presentation")
+                {
+                    var evaluate = new Evaluation
+                    {
+                        criteriaID = item.criteriaID,
+                        product_serviceID = evaluation.productId,
+                        Grade = (Grade)int.Parse(evaluation.presentation)
+                    };
+
+                    _context.Add(evaluate);
+                }
+                else if (item.criteria_name == "After Sales/Support")
+                {
+                    var evaluate = new Evaluation
+                    {
+                        criteriaID = item.criteriaID,
+                        product_serviceID = evaluation.productId,
+                        Grade = (Grade)int.Parse(evaluation.after_sales_support)
+                    };
+
+                    _context.Add(evaluate);
+                }
+                else if (item.criteria_name == "Statutory permits and rules")
+                {
+                    var evaluate = new Evaluation
+                    {
+                        criteriaID = item.criteriaID,
+                        product_serviceID = evaluation.productId,
+                        Grade = (Grade)int.Parse(evaluation.staturory_permits)
+                    };
+
+                    _context.Add(evaluate);
+                }
+
             }
-            PopulateProductsDropDownList();
-            PopulateCriteriaDropDownList();
+            await _context.SaveChangesAsync();
             return View(evaluation);
         }
 

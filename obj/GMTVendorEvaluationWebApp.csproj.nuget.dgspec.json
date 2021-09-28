@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADEGUN FISAYO\\Documents\\GMTVendorEvaluationWebApp\\GMTVendorEvaluationWebApp.csproj": {}
+    "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADEGUN FISAYO\\Documents\\GMTVendorEvaluationWebApp\\GMTVendorEvaluationWebApp.csproj": {
+    "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADEGUN FISAYO\\Documents\\GMTVendorEvaluationWebApp\\GMTVendorEvaluationWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj",
         "projectName": "GMTVendorEvaluationWebApp",
-        "projectPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\GMTVendorEvaluationWebApp\\GMTVendorEvaluationWebApp.csproj",
+        "projectPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj",
         "packagesPath": "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\GMTVendorEvaluationWebApp\\obj\\",
+        "outputPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADEGUN FISAYO\\AppData\\Roaming\\NuGet\\NuGet.Config",
