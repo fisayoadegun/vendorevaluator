@@ -4,10 +4,67 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+
+
+<h1>VENDOR/SUPPLIER EVALUATION FORM</h1>
+
+@{
+    var vendoinfo = ViewData["vendor"] as Vendor;
+    <div class='some-page-wrapper'>
+        <div class='row'>
+            <div class='column'>
+                <div class='blue-column'>
+                 Company Name: @vendoinfo.company_name
+                </div>
+            </div>
+            <div class='column'>
+                <div class='green-column'>
+                Type of Business: @vendoinfo.type_of_business
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='some-page-wrapper'>
+        <div class='row'>
+            <div class='column'>
+                <div class='blue-column'>
+                    Contact Person: @vendoinfo.contact_person
+                </div>
+            </div>
+            <div class='column'>
+                <div class='green-column'>
+                    Phone Number: @vendoinfo.phone_number
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='some-page-wrapper'>
+        <div class='row'>
+            <div class='column'>
+                <div class='blue-column'>
+                   Company Address: @vendoinfo.company_address
+                </div>
+            </div>
+            <div class='column'>
+                <div class='green-column'>
+                   Email: @vendoinfo.email
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
 
 <h4>Evaluation</h4>
 <hr />
+
+@{
+    var dd = ViewData["product"] as Product_Service;
+    <h4>
+        @dd.product_name
+    </h4>
+}
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -239,6 +296,7 @@
                     Very Satisfied
                 </label>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Evaluate" class="btn btn-primary" />
             </div>
@@ -247,15 +305,45 @@
 </div>
 
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<style>
+    /*.some-page-wrapper {
+        margin: 15px;
+        background-color: red;
+    }*/
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
-    @*<div class="form-group">
+    .column {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        flex: 1;
+    }
+
+    /*.blue-column {
+        background-color: blue;
+        height: 100px;
+    }*/
+
+    /*.green-column {
+        background-color: green;
+        height: 100px;
+    }*/
+</style>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@*<div class="form-group">
         <label asp-for="Product_Service" class="control-label"></label>
         <select asp-for="product_serviceID" class="form-control" asp-items="ViewBag.product_serviceID">
             <option value="">-- Select Product/Service --</option>

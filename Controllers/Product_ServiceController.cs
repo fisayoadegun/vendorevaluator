@@ -35,6 +35,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             {
                 var evaluation = new EvaluationViewModel();
                 evaluation.ProductName = item.product_name;
+                evaluation.Evaluated = item.Evaluated;
                 evaluation.CompanyName = item.Vendor.company_name;
                 evaluation.DepartmentName = item.Department.department_name;
                 evaluation.Date_Delivered = item.Date_delivered;

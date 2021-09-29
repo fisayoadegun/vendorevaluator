@@ -1,0 +1,199 @@
+﻿@model GMTVendorEvaluationWebApp.ViewModels.CriteriaOptions
+
+@{
+    ViewData["Title"] = "Admin_Create";
+}
+
+
+
+<h1>VENDOR/SUPPLIER EVALUATION FORM</h1>
+
+@{
+    var vendoinfo = ViewData["vendor"] as Vendor;
+    <div class='some-page-wrapper'>
+        <div class='row'>
+            <div class='column'>
+                <div class='blue-column'>
+                    Company Name: @vendoinfo.company_name
+                </div>
+            </div>
+            <div class='column'>
+                <div class='green-column'>
+                    Type of Business: @vendoinfo.type_of_business
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='some-page-wrapper'>
+        <div class='row'>
+            <div class='column'>
+                <div class='blue-column'>
+                    Contact Person: @vendoinfo.contact_person
+                </div>
+            </div>
+            <div class='column'>
+                <div class='green-column'>
+                    Phone Number: @vendoinfo.phone_number
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='some-page-wrapper'>
+        <div class='row'>
+            <div class='column'>
+                <div class='blue-column'>
+                    Company Address: @vendoinfo.company_address
+                </div>
+            </div>
+            <div class='column'>
+                <div class='green-column'>
+                    Email: @vendoinfo.email
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<h4>Evaluation</h4>
+<hr />
+
+@{
+    var dd = ViewData["product"] as Product_Service;
+    <h4>
+        @dd.product_name
+    </h4>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Admin_Create">
+            <h6>Competitiveness of Costing</h6>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="1" name="competitiveness_of_costing" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Very Dissatisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="2" name="competitiveness_of_costing" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Dissatisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="3" name="competitiveness_of_costing" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Somewhat Dissatisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="4" name="competitiveness_of_costing" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Somewhat Satisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="5" name="competitiveness_of_costing" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Satisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="6" name="competitiveness_of_costing" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Very Satisfied
+                </label>
+            </div>
+            <br />
+            <h6>Statutory permits and rules</h6>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="1" name="staturory_permits" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Very Dissatisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="2" name="staturory_permits" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Dissatisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="3" name="staturory_permits" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Somewhat Dissatisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="4" name="staturory_permits" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Somewhat Satisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="5" name="staturory_permits" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Satisfied
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="6" name="staturory_permits" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Very Satisfied
+                </label>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Evaluate" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<style>
+    /*.some-page-wrapper {
+        margin: 15px;
+        background-color: red;
+    }*/
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        flex: 1;
+    }
+
+    /*.blue-column {
+        background-color: blue;
+        height: 100px;
+    }*/
+
+    /*.green-column {
+        background-color: green;
+        height: 100px;
+    }*/
+</style>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@*<div class="form-group">
+        <label asp-for="Product_Service" class="control-label"></label>
+        <select asp-for="product_serviceID" class="form-control" asp-items="ViewBag.product_serviceID">
+            <option value="">-- Select Product/Service --</option>
+        </select>
+        <span asp-validation-for="product_serviceID" class="text-danger" />
+    </div>*@

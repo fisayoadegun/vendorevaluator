@@ -8,6 +8,8 @@ namespace GMTVendorEvaluationWebApp.Models
     public class EvaluationViewModel
     {
         public int product_id { get; set; }
+
+        public bool Evaluated { get; set; }
         public string ProductName { get; set; }
 
         public string CompanyName { get; set; }

@@ -89,7 +89,20 @@
             }
 
         <td>
-            <a asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Evaluate</a> |
+            @{
+                if (!item.Evaluated)
+                {
+                    <a asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Evaluate</a> 
+                }
+                else
+                {
+                    
+                    <a>Evaluated</a>
+                }
+            } 
+            
+
+             |
             <a asp-action="Edit" asp-route-id="@item.product_id">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.product_id">Details</a> |
             <a asp-action="Delete" asp-route-id="@item.product_id">Delete</a>

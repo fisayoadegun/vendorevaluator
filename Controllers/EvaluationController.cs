@@ -54,11 +54,18 @@ namespace GMTVendorEvaluationWebApp.Controllers
         }
 
         // GET: Evaluation/Create
-        public IActionResult Create(int? id)
+        public async Task<IActionResult> Create(int? id)
         {
+            var product = await this._context.Products_Services.FindAsync(id);
+            ViewData["product"] = product;
+            ViewData["vendor"] = await this._context.Vendors.FindAsync(product.vendorID);
             PopulateProductsDropDownList();
             PopulateCriteriaDropDownList();
             ViewData["productid"] = id;
+            var eva = await _context.Evaluations.ToListAsync();
+            
+            
+
             return View();
         }
 
@@ -69,80 +76,115 @@ namespace GMTVendorEvaluationWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CriteriaOptions evaluation)
         {
+
+            var product = await this._context.Products_Services.FindAsync(evaluation.productId);
+            product.Evaluated = true;
             foreach (var item in _context.Criteria.ToList())
             {
                 if (item.criteria_name == "Timeliness")
                 {
-                    
-                    var evaluate = new Evaluation
+                    if (!string.IsNullOrEmpty(evaluation.timeliness))
                     {
-                        criteriaID = item.criteriaID,
-                        product_serviceID = evaluation.productId,
-                        Grade = (Grade)int.Parse(evaluation.timeliness)
-                    };
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.timeliness)
+                        };
+                        _context.Add(evaluate);
+                    }
+                
 
-                    _context.Add(evaluate);
+                    
                 }
                 else if (item.criteria_name == "Quality of service")
                 {
-                    var evaluate = new Evaluation
+                    if (!string.IsNullOrEmpty(evaluation.quality_of_products))
                     {
-                        criteriaID = item.criteriaID,
-                        product_serviceID = evaluation.productId,
-                        Grade = (Grade)int.Parse(evaluation.quality_of_products)
-                    };
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.quality_of_products)
+                        };
+                        _context.Add(evaluate);
+                    }
+                    
 
-                    _context.Add(evaluate);
+                    
                 }
                 else if (item.criteria_name == "Competitiveness of Costing")
                 {
-                    var evaluate = new Evaluation
+                    if (!string.IsNullOrEmpty(evaluation.competitiveness_of_costing))
                     {
-                        criteriaID = item.criteriaID,
-                        product_serviceID = evaluation.productId,
-                        Grade = (Grade)int.Parse(evaluation.competitiveness_of_costing)
-                    };
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.competitiveness_of_costing)
+                        };
 
-                    _context.Add(evaluate);
+                        _context.Add(evaluate);
+                    }
+                    
                 }
                 else if (item.criteria_name == "Presentation")
                 {
-                    var evaluate = new Evaluation
+                    if(!string.IsNullOrEmpty(evaluation.presentation))
                     {
-                        criteriaID = item.criteriaID,
-                        product_serviceID = evaluation.productId,
-                        Grade = (Grade)int.Parse(evaluation.presentation)
-                    };
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.presentation)
+                        };
 
-                    _context.Add(evaluate);
+                        _context.Add(evaluate);
+                    }
+                    
                 }
                 else if (item.criteria_name == "After Sales/Support")
                 {
-                    var evaluate = new Evaluation
+                    if (!string.IsNullOrEmpty(evaluation.after_sales_support))
                     {
-                        criteriaID = item.criteriaID,
-                        product_serviceID = evaluation.productId,
-                        Grade = (Grade)int.Parse(evaluation.after_sales_support)
-                    };
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.after_sales_support)
+                        };
 
-                    _context.Add(evaluate);
+                        _context.Add(evaluate);
+                    }
+                    
                 }
                 else if (item.criteria_name == "Statutory permits and rules")
                 {
-                    var evaluate = new Evaluation
+                    if (!string.IsNullOrEmpty(evaluation.staturory_permits))
                     {
-                        criteriaID = item.criteriaID,
-                        product_serviceID = evaluation.productId,
-                        Grade = (Grade)int.Parse(evaluation.staturory_permits)
-                    };
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.staturory_permits)
+                        };
 
-                    _context.Add(evaluate);
+                        _context.Add(evaluate);
+                    }
+                    
                 }
+                
+                
 
             }
+
+            _context.Products_Services.Update(product);
             await _context.SaveChangesAsync();
-            return View(evaluation);
+            return RedirectToAction(actionName: nameof(Index), controllerName: "Product_Service");
         }
+
+        
+
 
         // GET: Evaluation/Edit/5
         public async Task<IActionResult> Edit(int? id)

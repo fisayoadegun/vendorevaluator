@@ -20,6 +20,8 @@ namespace GMTVendorEvaluationWebApp.Models
         [Display(Name = "Date Delivered")]
         public DateTime Date_delivered { get; set; }
 
+        public bool Evaluated { get; set; }
+
         public virtual IList<Evaluation> Evaluations { get; set; }
         public virtual Vendor Vendor { get; set; }
         public virtual Department Department { get; set; }
