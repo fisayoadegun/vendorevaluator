@@ -56,7 +56,7 @@
 }
 
 
-<h4>Evaluation</h4>
+<h4>Admin Evaluation</h4>
 <hr />
 
 @{
@@ -67,84 +67,8 @@
 }
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <h6>Timeliness</h6>
-            <input type="hidden" value="@ViewData["productid"]" asp-for="productId" />
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="1" name="timeliness" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Very Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="2" name="timeliness" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="3" name="timeliness" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Somewhat Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="4" name="timeliness" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Somewhat Satisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="5" name="timeliness" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Satisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="6" name="timeliness" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Very Satisfied
-                </label>
-            </div>
-            <br />
-            <h6>Quality of products/Parts/Material/Service Provided</h6>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="1" name="quality_of_products" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Very Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="2" name="quality_of_products" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="3" name="quality_of_products" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Somewhat Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="4" name="quality_of_products" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Somewhat Satisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="5" name="quality_of_products" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Satisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="6" name="quality_of_products" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Very Satisfied
-                </label>
-            </div>
-            <br />
+        <form asp-action="Create">            
+            <input type="hidden" value="@ViewData["productid"]" asp-for="productId" />            
             <h6>Competitiveness of Costing</h6>
             <div class="form-check">
                 <input class="form-check-input" type="radio" value="1" name="competitiveness_of_costing" id="flexRadioDefault2">
@@ -181,83 +105,7 @@
                 <label class="form-check-label" for="flexRadioDefault2">
                     Very Satisfied
                 </label>
-            </div>
-            <br />
-            <h6>Presentation</h6>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="1" name="presentation" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Very Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="2" name="presentation" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="3" name="presentation" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Somewhat Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="4" name="presentation" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Somewhat Satisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="5" name="presentation" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Satisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="6" name="presentation" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Very Satisfied
-                </label>
-            </div>
-            <br />
-            <h6>After Sales/Support</h6>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="1" name="after_sales_support" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Very Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="2" name="after_sales_support" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="3" name="after_sales_support" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Somewhat Dissatisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="4" name="after_sales_support" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Somewhat Satisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="5" name="after_sales_support" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Satisfied
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="6" name="after_sales_support" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Very Satisfied
-                </label>
-            </div>
+            </div>                        
             <br />
             <h6>Statutory permits and rules</h6>
             <div class="form-check">

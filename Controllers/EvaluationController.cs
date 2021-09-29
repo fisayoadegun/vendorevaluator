@@ -58,9 +58,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         {
             var product = await this._context.Products_Services.FindAsync(id);
             ViewData["product"] = product;
-            ViewData["vendor"] = await this._context.Vendors.FindAsync(product.vendorID);
-            PopulateProductsDropDownList();
-            PopulateCriteriaDropDownList();
+            ViewData["vendor"] = await this._context.Vendors.FindAsync(product.vendorID);            
             ViewData["productid"] = id;
             var eva = await _context.Evaluations.ToListAsync();
             
@@ -81,39 +79,8 @@ namespace GMTVendorEvaluationWebApp.Controllers
             product.Evaluated = true;
             foreach (var item in _context.Criteria.ToList())
             {
-                if (item.criteria_name == "Timeliness")
-                {
-                    if (!string.IsNullOrEmpty(evaluation.timeliness))
-                    {
-                        var evaluate = new Evaluation
-                        {
-                            criteriaID = item.criteriaID,
-                            product_serviceID = evaluation.productId,
-                            Grade = (Grade)int.Parse(evaluation.timeliness)
-                        };
-                        _context.Add(evaluate);
-                    }
-                
-
-                    
-                }
-                else if (item.criteria_name == "Quality of service")
-                {
-                    if (!string.IsNullOrEmpty(evaluation.quality_of_products))
-                    {
-                        var evaluate = new Evaluation
-                        {
-                            criteriaID = item.criteriaID,
-                            product_serviceID = evaluation.productId,
-                            Grade = (Grade)int.Parse(evaluation.quality_of_products)
-                        };
-                        _context.Add(evaluate);
-                    }
-                    
-
-                    
-                }
-                else if (item.criteria_name == "Competitiveness of Costing")
+                                
+                if (item.criteria_name == "Competitiveness of Costing")
                 {
                     if (!string.IsNullOrEmpty(evaluation.competitiveness_of_costing))
                     {
@@ -127,37 +94,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
                         _context.Add(evaluate);
                     }
                     
-                }
-                else if (item.criteria_name == "Presentation")
-                {
-                    if(!string.IsNullOrEmpty(evaluation.presentation))
-                    {
-                        var evaluate = new Evaluation
-                        {
-                            criteriaID = item.criteriaID,
-                            product_serviceID = evaluation.productId,
-                            Grade = (Grade)int.Parse(evaluation.presentation)
-                        };
-
-                        _context.Add(evaluate);
-                    }
-                    
-                }
-                else if (item.criteria_name == "After Sales/Support")
-                {
-                    if (!string.IsNullOrEmpty(evaluation.after_sales_support))
-                    {
-                        var evaluate = new Evaluation
-                        {
-                            criteriaID = item.criteriaID,
-                            product_serviceID = evaluation.productId,
-                            Grade = (Grade)int.Parse(evaluation.after_sales_support)
-                        };
-
-                        _context.Add(evaluate);
-                    }
-                    
-                }
+                }                                
                 else if (item.criteria_name == "Statutory permits and rules")
                 {
                     if (!string.IsNullOrEmpty(evaluation.staturory_permits))
@@ -194,17 +131,21 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 return NotFound();
             }
 
-            var evaluation = await _context.Evaluations.
-                AsNoTracking().
-                FirstOrDefaultAsync(m => m.evaluationID == id);
-            if (evaluation == null)
+
+            var product = await this._context.Products_Services.FindAsync(id);
+            ViewData["product"] = product;
+            ViewData["vendor"] = await this._context.Vendors.FindAsync(product.vendorID);
+            
+            ViewData["productid"] = id;
+            var eva = await _context.Evaluations.ToListAsync();
+            if (product == null)
 
             {
                 return NotFound();
             }
             PopulateProductsDropDownList();
             PopulateCriteriaDropDownList();
-            return View(evaluation);
+            return View();
         }
 
         // POST: Evaluation/Edit/5
@@ -212,7 +153,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? id, [Bind("evaluationID,product_serviceID,criteriaID,Grade")] Evaluation evaluation)
+        public async Task<IActionResult> EditPost(int? id, CriteriaOptions evaluation)
         {
             if (id == null)
             {
@@ -220,14 +161,81 @@ namespace GMTVendorEvaluationWebApp.Controllers
             }
 
             var evaluationToUpdate = await _context.Evaluations
-                .FirstOrDefaultAsync(c => c.evaluationID == id);
+                .FirstOrDefaultAsync(c => c.product_serviceID == id);
+            foreach (var item in _context.Criteria.ToList())
+            {
+                if (item.criteria_name == "Timeliness")
+                {
+                    if (!string.IsNullOrEmpty(evaluation.timeliness))
+                    {
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.timeliness)
+                        };
+                        _context.Update(evaluate);
+                    }
+
+
+
+                }
+                else if (item.criteria_name == "Quality of service")
+                {
+                    if (!string.IsNullOrEmpty(evaluation.quality_of_products))
+                    {
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.quality_of_products)
+                        };
+                        _context.Update(evaluate);
+                    }
+
+
+
+                }
+                
+                else if (item.criteria_name == "Presentation")
+                {
+                    if (!string.IsNullOrEmpty(evaluation.presentation))
+                    {
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.presentation)
+                        };
+
+                        _context.Update(evaluate);
+                    }
+
+                }
+                else if (item.criteria_name == "After Sales/Support")
+                {
+                    if (!string.IsNullOrEmpty(evaluation.after_sales_support))
+                    {
+                        var evaluate = new Evaluation
+                        {
+                            criteriaID = item.criteriaID,
+                            product_serviceID = evaluation.productId,
+                            Grade = (Grade)int.Parse(evaluation.after_sales_support)
+                        };
+
+                        _context.Update(evaluate);
+                    }
+
+                }
+                
+            }
 
             if (await TryUpdateModelAsync<Evaluation>(evaluationToUpdate,
-                "",
-                c => c.product_serviceID, c => c.criteriaID, c => c.Grade))
+                ""))
             {
                 try
                 {
+                    
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateException /* ex */)
@@ -237,12 +245,12 @@ namespace GMTVendorEvaluationWebApp.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Product_Service");
             }
 
 
             PopulateProductsDropDownList(evaluationToUpdate.product_serviceID);
-            PopulateCriteriaDropDownList(evaluationToUpdate.criteriaID);
+            //PopulateCriteriaDropDownList(evaluationToUpdate.criteriaID);
             return View(evaluation);
         }
 
