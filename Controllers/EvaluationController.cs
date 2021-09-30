@@ -159,6 +159,8 @@ namespace GMTVendorEvaluationWebApp.Controllers
             {
                 return NotFound();
             }
+            var product = await this._context.Products_Services.FindAsync(evaluation.productId);
+            product.departmental_evaluation = true;
 
             var evaluationToUpdate = await _context.Evaluations
                 .FirstOrDefaultAsync(c => c.product_serviceID == id);

@@ -7,9 +7,9 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add New Product</a>
 </p>
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -100,9 +100,16 @@
                     <a>Evaluated</a>
                 }
             } 
+
+            @{ 
+                if (!item.departmental_evaluation)
+                {
+                    <a asp-controller = "Evaluation" asp-action = "Edit" asp-route-id = "@item.product_id" > Departmental Evaluation </a> 
+                }
+            }
             
 
-             | <a asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id">Departmental Evaluation</a> |
+             
             <a asp-action="Edit" asp-route-id="@item.product_id">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.product_id">Details</a> |
             <a asp-action="Delete" asp-route-id="@item.product_id">Delete</a>

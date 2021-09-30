@@ -59,7 +59,7 @@ namespace GMTVendorEvaluationWebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Vendor}/{action=Vendor_Performance}/{id?}");
             });
         }
     }

@@ -10,6 +10,7 @@ namespace GMTVendorEvaluationWebApp.Models
         public int product_id { get; set; }
 
         public bool Evaluated { get; set; }
+        public bool departmental_evaluation { get; set; }
         public string ProductName { get; set; }
 
         public string CompanyName { get; set; }

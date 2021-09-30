@@ -7,9 +7,10 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add New Vendor</a>
 </p>
-<table class="table">
+
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -55,6 +56,9 @@
                 @Html.DisplayFor(modelItem => item.email)
             </td>
             <td>
+                @*<button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>*@
                 <a asp-action="Edit" asp-route-id="@item.vendorID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.vendorID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.vendorID">Delete</a>

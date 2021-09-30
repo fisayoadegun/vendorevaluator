@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GMTVendorEvaluationWebApp.Data;
 using GMTVendorEvaluationWebApp.Models;
+using GMTVendorEvaluationWebApp.ViewModels;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
@@ -25,6 +26,40 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(await _context.Vendors.ToListAsync());
         }
 
+        public async Task<IActionResult> Vendor_Performance()
+        {
+            var vendors = await _context.Vendors
+                .Include(x => x.Products_Services)
+                    .ThenInclude(x => x.Evaluations)
+                .AsNoTracking().ToListAsync();
+
+            var vendor_evaluations = new List<VendorEvaluation>();
+            foreach (var item in vendors)
+            {
+                var vendor_evaluate = new VendorEvaluation();
+                vendor_evaluate.CompanyName = item.company_name;
+                vendor_evaluate.vendor_id = item.vendorID;
+                var criteria = await _context.Criteria.ToListAsync();
+                var overallvendorscore = 0;
+                foreach (var product in item.Products_Services)
+                {
+                    var totalscore = (double)(criteria.Count() * 6);
+
+                    var evaluationscore = product.Evaluations.Select(a => ((int)a.Grade));
+
+                    var evaluationscorecriteria = evaluationscore.Sum();
+                    overallvendorscore += evaluationscorecriteria;
+                }
+
+                var sytemoverall = (double)(item.Products_Services.Count * 36);
+                var vendor_evaluation_score = (double)(overallvendorscore / sytemoverall);
+                vendor_evaluate.Percentage =  Math.Round((double)(vendor_evaluation_score * 100));
+                vendor_evaluate.NumberOfProducts = item.Products_Services.Count;
+                vendor_evaluations.Add(vendor_evaluate);
+            }
+            return View(vendor_evaluations);
+        }
+        
         // GET: Vendor/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<GMTVendorEvaluationWebApp.ViewModels.VendorEvaluation>
+
+@{
+    ViewData["Title"] = "Vendor_Performance";
+}
+
+<h1>Vendor Performance Evaluation</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Vendor Name
+            </th>
+            <th>
+                Number of Product/Service Evaluated
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Percentage)
+            </th>
+            <th>
+                Grade
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfProducts)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Percentage)%
+                </td>
+                @{
+                    if (item.Percentage >= 80 && item.Percentage <= 100)
+                    {
+                        <td>
+                            GREAT
+                        </td>
+                    }
+
+                    else if (item.Percentage >= 56 && item.Percentage <= 79)
+                    {
+                        <td>
+                            GOOD
+                        </td>
+                    }
+
+                    else if (item.Percentage >= 46 && item.Percentage <= 55)
+                    {
+                        <td>
+                            WATCHLIST
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            REPLACE
+                        </td>
+                    }
+
+
+                }
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
