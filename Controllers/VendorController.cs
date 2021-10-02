@@ -80,6 +80,8 @@ namespace GMTVendorEvaluationWebApp.Controllers
             if (vendorID != null)
             {
                 ViewData["vendorID"] = vendorID.Value;
+                ViewData["venID"] = new SelectList(_context.Vendors, "vendorID", "vendorID");
+
                 vendor_check.Product_Services = vendor_check.Vendors.Where(
                     x => x.vendorID == vendorID).Single().Products_Services;
             }
@@ -87,6 +89,26 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(vendor_check);
         }
 
+        public async Task<IActionResult> Vendor_Check_Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product_service = await _context.Products_Services
+                .Include(p => p.Vendor).Include(c => c.Department).Include(s => s.Evaluations)
+                    .ThenInclude(e => e.Criteria).AsNoTracking()
+
+                .FirstOrDefaultAsync(m => m.product_serviceID == id);
+
+            if (product_service == null)
+            {
+                return NotFound();
+            }
+
+            return View(product_service);
+        }
         // GET: Vendor/Details/5
         public async Task<IActionResult> Details(int? id)
         {

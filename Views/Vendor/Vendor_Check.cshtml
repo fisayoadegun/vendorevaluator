@@ -4,14 +4,14 @@
     ViewData["Title"] = "Vendor_Check";
 }
 
+<h3>
+    Products/Services Rendered by
+</h3>
+
+
 @if (Model.Product_Services != null)
 {
-    @foreach (var item in Model.Product_Services)
-    {
-        <h3>
-            Products/Services Rendered by @item.Vendor.company_name
-        </h3>
-    }
+
 
     <table class="table">
         <tr>
@@ -22,20 +22,24 @@
         </tr>
         @foreach (var item in Model.Product_Services)
         {
-    <tr>
-        <td>
-            @item.product_name
-        </td>
-        <td>
-            @item.Department.department_name
-        </td>
-        <td>
-            @item.Date_delivered
-        </td>
-        <td>
-            @item.Vendor.company_name
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @item.product_name
+                </td>
+                <td>
+                    @item.Department.department_name
+                </td>
+                <td>
+                    @item.Date_delivered
+                </td>
+                <td>
+                    @item.Vendor.company_name
+                </td>
+                <td>
+                    <a asp-controller="Product_Service" asp-action="Details" asp-route-id="@item.product_serviceID">Details</a>
+                </td>
+            </tr>
         }
+        
     </table>
 }
