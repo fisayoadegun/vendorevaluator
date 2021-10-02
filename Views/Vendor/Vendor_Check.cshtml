@@ -1,0 +1,41 @@
+﻿@model GMTVendorEvaluationWebApp.ViewModels.VendorEvaluation
+
+@{
+    ViewData["Title"] = "Vendor_Check";
+}
+
+@if (Model.Product_Services != null)
+{
+    @foreach (var item in Model.Product_Services)
+    {
+        <h3>
+            Products/Services Rendered by @item.Vendor.company_name
+        </h3>
+    }
+
+    <table class="table">
+        <tr>
+            <th>Product/Service</th>
+            <th>Department</th>
+            <th>Date Delivered</th>
+            <th>Company Name</th>
+        </tr>
+        @foreach (var item in Model.Product_Services)
+        {
+    <tr>
+        <td>
+            @item.product_name
+        </td>
+        <td>
+            @item.Department.department_name
+        </td>
+        <td>
+            @item.Date_delivered
+        </td>
+        <td>
+            @item.Vendor.company_name
+        </td>
+    </tr>
+        }
+    </table>
+}

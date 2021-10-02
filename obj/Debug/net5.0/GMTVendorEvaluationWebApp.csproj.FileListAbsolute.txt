@@ -343,3 +343,4 @@ C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\GMTVendor
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\GMTVendorEvaluationWebApp.genruntimeconfig.cache
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\GMTVendorEvaluationWebApp.csproj.AssemblyReference.cache
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Vendor\Vendor_Performance.cshtml.g.cs
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Vendor\Vendor_Check.cshtml.g.cs

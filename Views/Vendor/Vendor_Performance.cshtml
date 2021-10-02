@@ -63,7 +63,9 @@
                             REPLACE
                         </td>
                     }
-
+            <td>
+                @Html.ActionLink("Select", "Vendor_Check", new { vendorID = item.vendor_id })
+            </td>
 
                 }
 
@@ -72,4 +74,3 @@
         }
     </tbody>
 </table>
-

@@ -28,12 +28,15 @@ namespace GMTVendorEvaluationWebApp.Controllers
 
         public async Task<IActionResult> Vendor_Performance()
         {
+            var vendor_evaluations = new List<VendorEvaluation>();
             var vendors = await _context.Vendors
                 .Include(x => x.Products_Services)
                     .ThenInclude(x => x.Evaluations)
+                        .ThenInclude(x => x.Criteria)
                 .AsNoTracking().ToListAsync();
 
-            var vendor_evaluations = new List<VendorEvaluation>();
+           
+
             foreach (var item in vendors)
             {
                 var vendor_evaluate = new VendorEvaluation();
@@ -59,7 +62,31 @@ namespace GMTVendorEvaluationWebApp.Controllers
             }
             return View(vendor_evaluations);
         }
-        
+
+        public async Task<IActionResult> Vendor_Check(int? id, int? vendorID)
+        {
+            var vendor_check = new VendorEvaluation();
+            vendor_check.Vendors = await _context.Vendors
+                .Include(x => x.Products_Services)
+                    .ThenInclude(x => x.Evaluations)
+                .Include(x => x.Products_Services)
+                    .ThenInclude(x => x.Department)                
+                .AsNoTracking().ToListAsync();
+            foreach(var item in vendor_check.Vendors)
+            {
+                var vendor_evaluate = new VendorEvaluation();
+                vendor_evaluate.CompanyName = item.company_name;
+            }
+            if (vendorID != null)
+            {
+                ViewData["vendorID"] = vendorID.Value;
+                vendor_check.Product_Services = vendor_check.Vendors.Where(
+                    x => x.vendorID == vendorID).Single().Products_Services;
+            }
+
+            return View(vendor_check);
+        }
+
         // GET: Vendor/Details/5
         public async Task<IActionResult> Details(int? id)
         {
