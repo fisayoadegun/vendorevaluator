@@ -43,32 +43,35 @@
                 @{
                     if (item.Percentage >= 80 && item.Percentage <= 100)
                     {
-                        <td>
+                        <td style="background-color:green">
                             GREAT
                         </td>
                     }
 
                     else if (item.Percentage >= 56 && item.Percentage <= 79)
                     {
-                        <td>
+                        <td style="background-color:blue">
                             GOOD
                         </td>
                     }
 
                     else if (item.Percentage >= 46 && item.Percentage <= 55)
                     {
-                        <td>
+                        <td style="background-color:gold">
                             WATCHLIST
                         </td>
                     }
                     else
                     {
-                        <td>
+                        <td style="background-color:indianred">
                             REPLACE
                         </td>
                     }
                     <td>
-                        @Html.ActionLink("View Products/Services", "Vendor_Check", new { vendorID = item.vendor_id })
+                        <div class="btn btn-info" style="background-color:wheat">
+                            @Html.ActionLink("View Products/Services", "Vendor_Check", new { vendorID = item.vendor_id })
+                        </div>
+                        
                     </td>
 
                 }

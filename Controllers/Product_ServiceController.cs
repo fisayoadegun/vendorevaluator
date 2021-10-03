@@ -27,6 +27,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 .Include(x => x.Vendor)
                 .Include(x => x.Evaluations)
                 .Include(x => x.Department)
+                .OrderByDescending(x => x.Date_delivered)
                 .AsNoTracking().ToListAsync();
             ViewData["VendorFilter"] = searchString;
             var products = from s in _context.Products_Services

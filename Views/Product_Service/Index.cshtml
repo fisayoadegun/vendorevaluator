@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Products/Services</h1>
 
 <p>
     <a asp-action="Create">Add New Product</a>
@@ -90,30 +90,35 @@
             }
 
         <td>
-            @{
-                if (!item.Evaluated)
-                {
-                    <a asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Admin Evaluation</a> 
-                }
-                else
-                {
-                    
-                    <a>Evaluated</a>
-                }
-            } 
-
-            @{ 
-                if (!item.departmental_evaluation)
-                {
-                    <a asp-controller = "Evaluation" asp-action = "Edit" asp-route-id = "@item.product_id" > Departmental Evaluation </a> 
-                }
-            }
             
 
-             
-            <a asp-action="Edit" asp-route-id="@item.product_id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.product_id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.product_id">Delete</a>
+
+
+            <div class="row">
+                <div class="column" style="padding-left:5px">
+                    @{
+                        if (!item.Evaluated)
+                        {
+                            <a class="btn btn-light" asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Admin Evaluation</a>
+                        }
+                        else
+                        {
+
+                            <a class="btn btn-success btn-sm active" role="button" aria-pressed="true">Evaluated</a>
+                        }
+                    }
+
+                    @{
+                        if (!item.departmental_evaluation)
+                        {
+                            <a class="btn btn-light" style="padding-top:10px" asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id"> Departmental Evaluation </a>
+                        }
+                    }
+                </div>
+                <div class="column" style="padding-left:5px;"><a class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" asp-action="Edit" asp-route-id="@item.product_id">Edit</a></div>
+                <div class="column" style="padding-left:5px"><a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.product_id">Details</a> </div>
+                <div class="column" style="padding-left: 5px;"><a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.product_id">Delete</a></div>
+            </div>
 
         </td>
         </tr>
