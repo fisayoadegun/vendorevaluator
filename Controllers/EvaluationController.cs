@@ -247,7 +247,8 @@ namespace GMTVendorEvaluationWebApp.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
-                return RedirectToAction(actionName: nameof(Index), controllerName: "Product_Service");
+                return RedirectToAction(nameof(Evaluation_Completed));
+                //return RedirectToAction(actionName: nameof(Index), controllerName: "Product_Service");
             }
 
 
@@ -256,6 +257,10 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(evaluation);
         }
 
+        public ActionResult Evaluation_Completed()
+        {
+            return View();
+        }
         private void PopulateProductsDropDownList(object selectedProduct = null)
         {
             var productsQuery = from d in _context.Products_Services

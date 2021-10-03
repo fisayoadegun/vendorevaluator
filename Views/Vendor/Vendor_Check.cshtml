@@ -5,7 +5,7 @@
 }
 
 <h3>
-    Products/Services Rendered by
+    Products/Services Rendered
 </h3>
 
 
@@ -13,7 +13,7 @@
 {
 
 
-    <table class="table">
+    <table class="table table-bordered">
         <tr>
             <th>Product/Service</th>
             <th>Department</th>
@@ -36,7 +36,7 @@
                     @item.Vendor.company_name
                 </td>
                 <td>
-                    <a asp-controller="Product_Service" asp-action="Details" asp-route-id="@item.product_serviceID">Details</a>
+                    <a asp-controller="Product_Service" asp-action="Details" asp-route-id="@item.product_serviceID">View Details</a>
                 </td>
             </tr>
         }

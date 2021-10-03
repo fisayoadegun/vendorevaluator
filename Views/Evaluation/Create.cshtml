@@ -10,48 +10,60 @@
 
 @{
     var vendoinfo = ViewData["vendor"] as Vendor;
-    <div class='some-page-wrapper'>
-        <div class='row'>
-            <div class='column'>
-                <div class='blue-column'>
-                 Company Name: @vendoinfo.company_name
-                </div>
-            </div>
-            <div class='column'>
-                <div class='green-column'>
-                Type of Business: @vendoinfo.type_of_business
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='some-page-wrapper'>
-        <div class='row'>
-            <div class='column'>
-                <div class='blue-column'>
-                    Contact Person: @vendoinfo.contact_person
-                </div>
-            </div>
-            <div class='column'>
-                <div class='green-column'>
-                    Phone Number: @vendoinfo.phone_number
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='some-page-wrapper'>
-        <div class='row'>
-            <div class='column'>
-                <div class='blue-column'>
-                   Company Address: @vendoinfo.company_address
-                </div>
-            </div>
-            <div class='column'>
-                <div class='green-column'>
-                   Email: @vendoinfo.email
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th colspan="4" style="text-align:center">Vendor/Supplier Information</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    <strong>Company Name:</strong>
+                </td>
+                <td>
+                    @vendoinfo.company_name
+                </td>
+                <td>
+                    <strong>Type of Business:</strong>
+                </td>
+                <td>
+                    @vendoinfo.type_of_business
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Contact Person: </strong>
+                </td>
+                <td>
+                    @vendoinfo.contact_person
+                </td>
+                <td>
+                    <strong>Phone:</strong>
+                </td>
+                <td>
+                    @vendoinfo.phone_number
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Company Address:</strong>
+                </td>
+                <td>
+                    @vendoinfo.company_address
+                </td>
+                <td>
+                    <strong>Email:</strong>
+                </td>
+                <td>
+                    @vendoinfo.email
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 
 }
 

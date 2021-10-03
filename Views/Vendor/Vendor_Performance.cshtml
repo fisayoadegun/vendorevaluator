@@ -1,4 +1,8 @@
-﻿@model IEnumerable<GMTVendorEvaluationWebApp.ViewModels.VendorEvaluation>
+﻿
+@model IEnumerable<GMTVendorEvaluationWebApp.ViewModels.VendorEvaluation>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 @{
     ViewData["Title"] = "Vendor_Performance";
@@ -63,9 +67,9 @@
                             REPLACE
                         </td>
                     }
-            <td>
-                @Html.ActionLink("Select", "Vendor_Check", new { vendorID = item.vendor_id })
-            </td>
+                    <td>
+                        @Html.ActionLink("View Products/Services", "Vendor_Check", new { vendorID = item.vendor_id })
+                    </td>
 
                 }
 
@@ -74,3 +78,4 @@
         }
     </tbody>
 </table>
+

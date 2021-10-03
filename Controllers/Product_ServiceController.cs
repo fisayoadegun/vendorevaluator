@@ -21,14 +21,23 @@ namespace GMTVendorEvaluationWebApp.Controllers
         }
 
         // GET: Product_Service
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string productFilter)
         {
             var products_services = await _context.Products_Services
                 .Include(x => x.Vendor)
                 .Include(x => x.Evaluations)
                 .Include(x => x.Department)
                 .AsNoTracking().ToListAsync();
+            ViewData["VendorFilter"] = searchString;
+            var products = from s in _context.Products_Services
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.product_name.Contains(searchString)
+                                       || s.Vendor.company_name.Contains(searchString));
 
+                return View(await products.AsNoTracking().ToListAsync());
+            }
 
             var evaluations = new List<EvaluationViewModel>();
             foreach (var item in products_services)

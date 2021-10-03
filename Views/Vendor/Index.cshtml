@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.Vendor>
+﻿@*@model IEnumerable<GMTVendorEvaluationWebApp.Models.Vendor>*@
+@model  PaginatedList<GMTVendorEvaluationWebApp.Models.Vendor>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,60 +11,89 @@
     <a asp-action="Create">Add New Vendor</a>
 </p>
 
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Search For Vendor: <input type="text" name="SearchString" value="@ViewData["VendorFilter"]" />
+            <input type="submit" value="Search" class="btn btn-info" />
+            <a asp-action="Index" class="btn btn-outline-success">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.company_name)
+                Company Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.contact_person)
+                Contact Perdon
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.company_address)
+                Company Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.type_of_business)
+                Type of Business
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.phone_number)
+                Phone Number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.email)
+                Email
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.company_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.contact_person)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.company_address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.type_of_business)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phone_number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @*<button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-                <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>*@
-                <a asp-action="Edit" asp-route-id="@item.vendorID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.vendorID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.vendorID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.company_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contact_person)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.company_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type_of_business)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @*<button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>*@
+                    <a asp-action="Edit" asp-route-id="@item.vendorID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.vendorID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.vendorID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-vendorFilter="@ViewData["VendorFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-vendorFilter="@ViewData["VendorFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

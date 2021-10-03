@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using GMTVendorEvaluationWebApp.Data;
 using GMTVendorEvaluationWebApp.Models;
 using GMTVendorEvaluationWebApp.ViewModels;
+using System.Data;
+using System.Web;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
@@ -21,10 +23,28 @@ namespace GMTVendorEvaluationWebApp.Controllers
         }
 
         // GET: Vendor
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string vendorFilter, int? pageNumber)
         {
-            return View(await _context.Vendors.ToListAsync());
+            ViewData["VendorFilter"] = searchString;
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = vendorFilter;
+            }
+            var vendors = from s in _context.Vendors
+                            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                vendors = vendors.Where(s => s.company_name.Contains(searchString)
+                                       || s.type_of_business.Contains(searchString));
+            }
+            int pageSize = 10;
+            return View(await PaginatedList<Vendor>.CreateAsync(vendors.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
+
 
         public async Task<IActionResult> Vendor_Performance()
         {
@@ -89,26 +109,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(vendor_check);
         }
 
-        public async Task<IActionResult> Vendor_Check_Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product_service = await _context.Products_Services
-                .Include(p => p.Vendor).Include(c => c.Department).Include(s => s.Evaluations)
-                    .ThenInclude(e => e.Criteria).AsNoTracking()
-
-                .FirstOrDefaultAsync(m => m.product_serviceID == id);
-
-            if (product_service == null)
-            {
-                return NotFound();
-            }
-
-            return View(product_service);
-        }
+        
         // GET: Vendor/Details/5
         public async Task<IActionResult> Details(int? id)
         {

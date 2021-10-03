@@ -1,58 +1,79 @@
 ﻿@model GMTVendorEvaluationWebApp.ViewModels.CriteriaOptions
 
 @{
-    ViewData["Title"] = "Admin_Create";
+    Layout = "~/Views/Shared/edit_layout.cshtml";
 }
+@*@{
+        ViewData["Title"] = "Admin_Create";
+    }*@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 
+</head>
 
 
 <h1>VENDOR/SUPPLIER EVALUATION FORM</h1>
 
 @{
     var vendoinfo = ViewData["vendor"] as Vendor;
-    <div class='some-page-wrapper'>
-        <div class='row'>
-            <div class='column'>
-                <div class='blue-column'>
-                    Company Name: @vendoinfo.company_name
-                </div>
-            </div>
-            <div class='column'>
-                <div class='green-column'>
-                    Type of Business: @vendoinfo.type_of_business
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='some-page-wrapper'>
-        <div class='row'>
-            <div class='column'>
-                <div class='blue-column'>
-                    Contact Person: @vendoinfo.contact_person
-                </div>
-            </div>
-            <div class='column'>
-                <div class='green-column'>
-                    Phone Number: @vendoinfo.phone_number
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='some-page-wrapper'>
-        <div class='row'>
-            <div class='column'>
-                <div class='blue-column'>
-                    Company Address: @vendoinfo.company_address
-                </div>
-            </div>
-            <div class='column'>
-                <div class='green-column'>
-                    Email: @vendoinfo.email
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table table-bordered">
 
+        <thead>
+            <tr>
+                <th colspan="4" style="text-align:center">Vendor/Supplier Information</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    <strong>Company Name:</strong> 
+                </td>
+                <td>
+                    @vendoinfo.company_name
+                </td>
+                <td>
+                    <strong>Type of Business:</strong> 
+                </td>
+                <td>
+                    @vendoinfo.type_of_business
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Contact Person: </strong> 
+                </td>
+                <td>
+                    @vendoinfo.contact_person
+                </td>
+                <td>
+                    <strong>Phone:</strong> 
+                </td>
+                <td>
+                    @vendoinfo.phone_number
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Company Address:</strong> 
+                </td>
+                <td>
+                    @vendoinfo.company_address
+                </td>
+                <td>
+                    <strong>Email:</strong> 
+                </td>
+                <td>
+                    @vendoinfo.email
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    
 }
 
 
@@ -235,36 +256,8 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<style>
-    /*.some-page-wrapper {
-        margin: 15px;
-        background-color: red;
-    }*/
 
-    .row {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
-    }
 
-    .column {
-        display: flex;
-        flex-direction: column;
-        flex-basis: 100%;
-        flex: 1;
-    }
-
-    /*.blue-column {
-        background-color: blue;
-        height: 100px;
-    }*/
-
-    /*.green-column {
-        background-color: green;
-        height: 100px;
-    }*/
-</style>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
