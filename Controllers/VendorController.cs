@@ -52,7 +52,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             var vendors = await _context.Vendors
                 .Include(x => x.Products_Services)
                     .ThenInclude(x => x.Evaluations)
-                        .ThenInclude(x => x.Criteria)
+                        .ThenInclude(x => x.Criteria)                        
                 .AsNoTracking().ToListAsync();
 
            
@@ -80,7 +80,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 vendor_evaluate.NumberOfProducts = item.Products_Services.Count;
                 vendor_evaluations.Add(vendor_evaluate);
             }
-            return View(vendor_evaluations);
+            return View(vendor_evaluations.OrderByDescending(x => x.Percentage));
         }
 
         public async Task<IActionResult> Vendor_Check(int? id, int? vendorID)
@@ -90,7 +90,8 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 .Include(x => x.Products_Services)
                     .ThenInclude(x => x.Evaluations)
                 .Include(x => x.Products_Services)
-                    .ThenInclude(x => x.Department)                
+                    .ThenInclude(x => x.Department)
+                    
                 .AsNoTracking().ToListAsync();
             foreach(var item in vendor_check.Vendors)
             {

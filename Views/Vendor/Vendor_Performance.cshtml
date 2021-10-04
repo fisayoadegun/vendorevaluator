@@ -30,54 +30,62 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumberOfProducts)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Percentage)%
-                </td>
-                @{
-                    if (item.Percentage >= 80 && item.Percentage <= 100)
-                    {
-                        <td style="background-color:green">
-                            GREAT
-                        </td>
-                    }
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfProducts)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Percentage)%
+            </td>
 
-                    else if (item.Percentage >= 56 && item.Percentage <= 79)
-                    {
-                        <td style="background-color:blue">
-                            GOOD
-                        </td>
-                    }
+            @{
 
-                    else if (item.Percentage >= 46 && item.Percentage <= 55)
-                    {
-                        <td style="background-color:gold">
-                            WATCHLIST
-                        </td>
-                    }
-                    else
-                    {
-                        <td style="background-color:indianred">
-                            REPLACE
-                        </td>
-                    }
-                    <td>
-                        <div class="btn btn-info" style="background-color:wheat">
-                            @Html.ActionLink("View Products/Services", "Vendor_Check", new { vendorID = item.vendor_id })
-                        </div>
-                        
+                if (item.Percentage >= 80 && item.Percentage <= 100)
+                {
+                    <td style="background-color:green; color: white;">
+                        GREAT
                     </td>
-
                 }
 
+                else if (item.Percentage >= 56 && item.Percentage <= 79)
+                {
+                    <td style="background-color:blue; color:white;">
+                        GOOD
+                    </td>
+                }
 
-            </tr>
+                else if (item.Percentage >= 46 && item.Percentage <= 55)
+                {
+                    <td style="background-color:gold; color:white;">
+                        WATCHLIST
+                    </td>
+                }
+                else if (item.NumberOfProducts == 0)
+                {
+                    <td>
+                        Vendor yet to be evaluated
+                    </td>
+                }
+                else
+                {
+                    <td style="background-color:indianred; color: white;">
+                        REPLACE
+                    </td>
+                }
+                <td>
+                    <div class="btn btn-info" style="background-color:wheat">
+                        @Html.ActionLink("View Products/Services", "Vendor_Check", new { vendorID = item.vendor_id })
+                    </div>
+
+                </td>
+
+            }
+
+
+        </tr>
         }
     </tbody>
 </table>
