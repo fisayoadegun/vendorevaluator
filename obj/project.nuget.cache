@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "iSeQZ+36DqHCjaRmbvWF9LK74KjdRDOmGHYe6h3q0V/FPU+ekEHoKspnM2sD+1nxT99JkHtvueUI6XbkyLGLUQ==",
+  "dgSpecHash": "ykF4x4yf+Phbu03piuAftr41+Y8LfnIskg6YuWArovaQRu0aJzIRFT/VUcnNnXG3fs8BB/2JYm8pEkDXZU8I4Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\chart.js\\2.9.3\\chart.js.2.9.3.nupkg.sha512",
     "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.9\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.9.nupkg.sha512",
     "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
