@@ -10,6 +10,16 @@
     <a asp-action="Create">Add New Product</a>
 </p>
 
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["VendorFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table table-bordered">
     <thead>
         <tr>

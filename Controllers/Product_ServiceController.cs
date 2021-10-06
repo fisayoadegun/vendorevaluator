@@ -29,16 +29,16 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 .Include(x => x.Department)
                 .OrderByDescending(x => x.Date_delivered)
                 .AsNoTracking().ToListAsync();
-            ViewData["VendorFilter"] = searchString;
-            var products = from s in _context.Products_Services
-                           select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                products = products.Where(s => s.product_name.Contains(searchString)
-                                       || s.Vendor.company_name.Contains(searchString));
+            //ViewData["VendorFilter"] = searchString;
+            //var products = from s in _context.Products_Services
+            //               select s;
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    products = products.Where(s => s.product_name.Contains(searchString)
+            //                           || s.Vendor.company_name.Contains(searchString));
 
-                return View(await products.AsNoTracking().ToListAsync());
-            }
+            //    return View(await products.AsNoTracking().ToListAsync());
+            //}
 
             var evaluations = new List<EvaluationViewModel>();
             foreach (var item in products_services)

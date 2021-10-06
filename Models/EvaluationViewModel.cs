@@ -22,5 +22,6 @@ namespace GMTVendorEvaluationWebApp.Models
         public double Score { get; set; }
 
         public double Percentage { get; set; }
+        
     }
 }
