@@ -348,3 +348,7 @@ C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Vie
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Shared\edit_layout.cshtml.g.cs
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\GMTVendorEvaluationWebApp.csproj.AssemblyReference.cache
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Vendor\dashboard.cshtml.g.cs
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\bin\Debug\net5.0\ExcelDataReader.dll
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Vendor\Vendor_Upload.cshtml.g.cs
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\bin\Debug\net5.0\EPPlus.dll
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll

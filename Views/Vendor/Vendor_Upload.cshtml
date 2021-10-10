@@ -1,0 +1,15 @@
+﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.Vendor>
+
+
+<h4>
+    The Excel file headers should have the following values: (company_name,	contact_person,	company_address,	type_of_business,	phone_number,	email)
+</h4>
+
+<br />
+<br />
+<form asp-controller="Vendor" asp-action="Vendor_Upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <hr />
+    <button style="color:white; background-color:blue;" type="submit">Upload</button>
+</form>
+

@@ -10,6 +10,10 @@ using GMTVendorEvaluationWebApp.Models;
 using GMTVendorEvaluationWebApp.ViewModels;
 using System.Data;
 using System.Web;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using OfficeOpenXml;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
@@ -45,7 +49,49 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(await PaginatedList<Vendor>.CreateAsync(vendors.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Vendor_Upload(List<Vendor> vendors = null)
+        {
+            vendors = vendors == null ? new List<Vendor>() : vendors;
+            return View();
+        }
 
+
+
+        public async Task<IActionResult> Vendor_Upload(IFormFile file)
+        {
+            var vendors = new List<Vendor>();
+            using (var stream = new MemoryStream())
+            {
+                await file.CopyToAsync(stream);
+                using (var package = new ExcelPackage(stream))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                    var rowcount = worksheet.Dimension.Rows;
+                    for (int row = 2; row <= rowcount; row++)
+                    {
+                        _context.Vendors.Add(new Vendor
+                        {
+                            company_name = worksheet.Cells[row, 1].Value.ToString().Trim(),
+                            contact_person = worksheet.Cells[row, 2].Value.ToString().Trim(),
+                            company_address = worksheet.Cells[row, 3].Value.ToString().Trim(),
+                            type_of_business = worksheet.Cells[row, 4].Value.ToString().Trim(),
+                            phone_number = worksheet.Cells[row, 5].Value.ToString().Trim(),
+                            email = worksheet.Cells[row, 6].Value.ToString().Trim(),
+                        });
+                        
+                        await _context.SaveChangesAsync();
+                       
+
+                    }
+                    
+
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        
         public async Task<IActionResult> Vendor_Performance()
         {
             var vendor_evaluations = new List<VendorEvaluation>();
