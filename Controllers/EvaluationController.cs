@@ -9,9 +9,11 @@ using GMTVendorEvaluationWebApp.Data;
 using GMTVendorEvaluationWebApp.Models;
 using GMTVendorEvaluationWebApp.ViewModels;
 using GMTVendorEvaluationWebApp.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
+    
     public class EvaluationController : Controller
     {
         private readonly IEvaluationServiceInterface _evaluationService;

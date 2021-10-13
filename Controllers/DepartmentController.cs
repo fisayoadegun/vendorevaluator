@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GMTVendorEvaluationWebApp.Data;
 using GMTVendorEvaluationWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
+    
     public class DepartmentController : Controller
     {
         private readonly EvaluationContext _context;

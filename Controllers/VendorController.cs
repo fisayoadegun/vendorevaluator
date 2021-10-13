@@ -14,9 +14,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using OfficeOpenXml;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
+    
     public class VendorController : Controller
     {
         private readonly EvaluationContext _context;
