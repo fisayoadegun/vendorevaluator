@@ -58,7 +58,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
 
             //await _userManager.AddToRoleAsync(user);
 
-            return RedirectToAction(nameof(VendorController.Vendor_Performance), "Home");
+            return RedirectToAction(nameof(VendorController.Vendor_Performance), "Vendor");
         }
 
         [HttpGet]
