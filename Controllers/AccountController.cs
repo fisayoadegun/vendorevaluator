@@ -96,7 +96,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         {
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction(nameof(Login), "Login");
+            return RedirectToAction(nameof(VendorController.Vendor_Performance), "Vendor");
         }
 
         [HttpGet]

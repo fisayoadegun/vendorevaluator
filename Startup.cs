@@ -85,6 +85,7 @@ namespace GMTVendorEvaluationWebApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -92,7 +93,7 @@ namespace GMTVendorEvaluationWebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Account}/{action=Login}/{id?}");
+                    pattern: "{controller=Vendor}/{action=Vendor_Performance}/{id?}");
             });
         }
     }

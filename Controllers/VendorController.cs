@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
-    
+    [Authorize]
     public class VendorController : Controller
     {
         private readonly EvaluationContext _context;
@@ -93,6 +93,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
         
         public async Task<IActionResult> Vendor_Performance()
         {

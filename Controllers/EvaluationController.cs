@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
-    
+    [Authorize]
     public class EvaluationController : Controller
     {
         private readonly IEvaluationServiceInterface _evaluationService;
