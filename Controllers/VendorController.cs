@@ -134,8 +134,8 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 
                 
             }
-            ViewBag.PER = vendor_evaluations.Select(x => x.Percentage);
-            ViewBag.VENDORS = vendors.Select(x => x.company_name);
+            ViewBag.PER = vendor_evaluations.OrderByDescending(x => x.Percentage).Select(x => x.Percentage).Take(5).ToList();
+            ViewBag.VENDORS = vendor_evaluations.OrderByDescending(x => x.Percentage).Select(x => x.CompanyName).Take(5).ToList();
             return View(vendor_evaluations.OrderByDescending(x => x.Percentage));
         }
 
