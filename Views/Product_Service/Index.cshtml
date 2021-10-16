@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+    
 
 <h1>Products/Services</h1>
 
@@ -10,18 +11,22 @@
     <a asp-action="Create">Add New Product</a>
 </p>
 
-<table class="table table-bordered">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." title="Type in a name">
+<hr />
+
+<table class="table table-bordered" id="myTable">
     <thead>
         <tr>
             <th>
                 Product Name
             </th>
             <th>
-                Date Delivered
-            </th>
-            <th>
                 Vendor
             </th>
+            <th>
+                Date Delivered
+            </th>
+
             <th>
                 Deparment
             </th>
@@ -30,7 +35,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Percentage)
-            </th>            
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,11 +46,12 @@
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date_Delivered)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Delivered)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.DepartmentName)
             </td>
@@ -55,40 +61,85 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Percentage)%
             </td>
-           
 
-        <td>            
-            <div class="row">
-                <div class="column" style="padding-left:15px">
-                    @{
-                        if (!item.Evaluated)
-                        {
-                            <a class="btn btn-light" asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Admin Evaluation</a>
-                        }
-                        else
-                        {
 
-                            <a class="btn btn-success btn-sm active" role="button" aria-pressed="true">Evaluated</a>
-                        }
-                    }
+            <td>
+                <div class="row">
+                    <div class="column" style="padding-left:15px">
+                        @{
+                            if (!item.Evaluated)
+                            {
+                                <a class="btn btn-light" asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Admin Evaluation</a>
+                            }
+                            else
+                            {
 
-                    @{
-                        if (!item.departmental_evaluation)
-                        {
-                            <a class="btn btn-light" style="padding-top:10px" asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id"> Departmental Evaluation </a>
-                            <br />
+                                <a class="btn btn-success btn-sm active" role="button" aria-pressed="true">Evaluated</a>
+                            }
                         }
-                    }
+
+                        @{
+                            if (!item.departmental_evaluation)
+                            {
+                                <a class="btn btn-light" style="padding-top:10px" asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id"> Departmental Evaluation </a>
+                                <br />
+                            }
+                        }
+                    </div>
+                    <div class="column" style="padding-left:15px"><a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.product_id">Details</a> </div>
+                    <div class="column" style="padding-left:15px;"><a class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" asp-action="Edit" asp-route-id="@item.product_id">Edit</a></div>
+
+                    <div class="column" style="padding-left: 15px;"><a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.product_id">Delete</a></div>
                 </div>
-                <div class="column" style="padding-left:15px"><a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.product_id">Details</a> </div>
-                <div class="column" style="padding-left:15px;"><a class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" asp-action="Edit" asp-route-id="@item.product_id">Edit</a></div>
-                
-                <div class="column" style="padding-left: 15px;"><a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.product_id">Delete</a></div>
-            </div>
 
-        </td>
+            </td>
         </tr>
 }
     </tbody>
     
 </table>
+
+<script>
+    function myFunction() {
+
+        // Declare variables 
+        var input = document.getElementById("myInput");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("myTable");
+        var trs = table.tBodies[0].getElementsByTagName("tr");
+
+        // Loop through first tbody's rows
+        for (var i = 0; i < trs.length; i++) {
+
+            // define the row's cells
+            var tds = trs[i].getElementsByTagName("td");
+
+            // hide the row
+            trs[i].style.display = "none";
+
+            // loop through row cells
+            for (var i2 = 0; i2 < tds.length; i2++) {
+
+                // if there's a match
+                if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                    // show the row
+                    trs[i].style.display = "";
+
+                    // skip to the next row
+                    continue;
+
+                }
+            }
+        }
+
+    }
+
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "paging": false // false to disable pagination (or any other option)
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+</script>
