@@ -1,52 +1,54 @@
 ﻿@model GMTVendorEvaluationWebApp.Models.Product_Service
 
-@{
-    ViewData["Title"] = "Create";
-}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        @{
+            ViewData["Title"] = "Create";
+        }
 
-<h1>Add new Product/Service</h1>
+        <h1>Add new Product/Service</h1>
 
-<h4>Product/Service</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Vendor" class="control-label"></label>
-                <select asp-for="vendorID" class="form-control" asp-items="ViewBag.vendorID">
-                    <option value="">-- Select Vendor --</option>
-                </select>
-                <span asp-validation-for="vendorID" class="text-danger"/>
+        <h4>Product/Service</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Vendor" class="control-label"></label>
+                        <select asp-for="vendorID" class="form-control" asp-items="ViewBag.vendorID">
+                            <option value="">-- Select Vendor --</option>
+                        </select>
+                        <span asp-validation-for="vendorID" class="text-danger" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Department" class="control-label"></label>
+                        <select asp-for="departmentID" class="form-control" asp-items="ViewBag.departmentID">
+                            <option value="">-- Select Department --</option>
+                        </select>
+                        <span asp-validation-for="departmentID" class="text-danger" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="product_name" class="control-label"></label>
+                        <input asp-for="product_name" class="form-control" />
+                        <span asp-validation-for="product_name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Date_delivered" class="control-label"></label>
+                        <input asp-for="Date_delivered" class="form-control" />
+                        <span asp-validation-for="Date_delivered" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Add Product/Service" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Department" class="control-label"></label>
-                <select asp-for="departmentID" class ="form-control" asp-items="ViewBag.departmentID">
-                    <option value="">-- Select Department --</option>
-                </select>
-                <span asp-validation-for="departmentID" class="text-danger" />
-            </div>
-            <div class="form-group">
-                <label asp-for="product_name" class="control-label"></label>
-                <input asp-for="product_name" class="form-control" />
-                <span asp-validation-for="product_name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date_delivered" class="control-label"></label>
-                <input asp-for="Date_delivered" class="form-control" />
-                <span asp-validation-for="Date_delivered" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Add Product/Service" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+        </div>

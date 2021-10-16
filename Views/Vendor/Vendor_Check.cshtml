@@ -1,45 +1,47 @@
 ﻿@model GMTVendorEvaluationWebApp.ViewModels.VendorEvaluation
 
-@{
-    ViewData["Title"] = "Vendor_Check";
-}
-
-<h3>
-    Products/Services Rendered
-</h3>
-
-
-@if (Model.Product_Services != null)
-{
-
-
-    <table class="table table-bordered">
-        <tr>
-            <th>Product/Service</th>
-            <th>Department</th>
-            <th>Date Delivered</th>
-            <th>Company Name</th>
-        </tr>
-        @foreach (var item in Model.Product_Services)
-        {
-            <tr>
-                <td>
-                    @item.product_name
-                </td>
-                <td>
-                    @item.Department.department_name
-                </td>
-                <td>
-                    @item.Date_delivered
-                </td>
-                <td>
-                    @item.Vendor.company_name
-                </td>
-                <td>
-                    <a class="btn btn-info" asp-controller="Product_Service" asp-action="Details" asp-route-id="@item.product_serviceID">View Details</a>
-                </td>
-            </tr>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        @{
+            ViewData["Title"] = "Vendor_Check";
         }
-        
-    </table>
-}
+
+        <h3>
+            Products/Services Rendered
+        </h3>
+
+
+        @if (Model.Product_Services != null)
+        {
+
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Product/Service</th>
+                    <th>Department</th>
+                    <th>Date Delivered</th>
+                    <th>Company Name</th>
+                </tr>
+                @foreach (var item in Model.Product_Services)
+                {
+                    <tr>
+                        <td>
+                            @item.product_name
+                        </td>
+                        <td>
+                            @item.Department.department_name
+                        </td>
+                        <td>
+                            @item.Date_delivered
+                        </td>
+                        <td>
+                            @item.Vendor.company_name
+                        </td>
+                        <td>
+                            <a class="btn btn-info" asp-controller="Product_Service" asp-action="Details" asp-route-id="@item.product_serviceID">View Details</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+</div>

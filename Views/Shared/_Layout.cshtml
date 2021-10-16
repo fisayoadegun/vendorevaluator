@@ -1,64 +1,241 @@
-﻿<!DOCTYPE html>
+﻿@*<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - GMT Vendor Evaluator</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Vendor" asp-action="Vendor_Performance">GMT Vendor Evaluator</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="Vendor_Performance">Home</a>
+                            </li>
+
+
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="Index">Vendors</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">Deparments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product_Service" asp-action="Index">Products/Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Criteria" asp-action="Index">Criteria</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - GMT NIGERIA LIMITED
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>*@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GMT Vendor Evaluator</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="~/css/Dashboard.css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>GMT VENDOR EVALUATION</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Vendor" asp-action="Vendor_Performance">GMT Vendor Evaluator</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="Vendor_Performance">Home</a>
-                        </li>
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="Index">Vendors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">Deparments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product_Service" asp-action="Index">Products/Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Criteria" asp-action="Index">Criteria</a>
-                        </li>                        
-                    </ul>
-                </div>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />                    
-                </div>
+                <a class="navbar-brand" asp-area="" asp-controller="Vendor" asp-action="Vendor_Performance">GMT Vendor Evaluator</a>
             </div>
-        </nav>
-    </header>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="Vendor_Performance">Home</a>
+                    </li>
+
+
+
+                    
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#">Welcome @User.Identity.Name!</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline" asp-controller="Account" asp-action="Logout">
+                                <button type="submit" class="nav-link btn btn-link text-info">Logout</button>
+                            </form>
+                        </li>
+ }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Account"
+                               asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Account"
+                               asp-action="Register">Register</a>
+                        </li>
+}
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="Vendor_Performance">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="Index">Vendors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">Deparments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Product_Service" asp-action="Index">Products/Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Criteria" asp-action="Index">Criteria</a>
+                    </li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><br></li>
+                    <li><br></li>
+                    <li><br></li>
+                    <li><br></li>
+                    <li><br></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        
+                        <li class="nav-item">
+                            <form class="form-inline" asp-controller="Account" asp-action="Logout">
+                                <button type="submit" class="nav-link btn btn-link text-info">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Account"
+                               asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Account"
+                               asp-action="Register">Register</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - GMT NIGERIA LIMITED 
+            &copy; 2021 - GMT NIGERIA LIMITED
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="../../assets/js/vendor/holder.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>

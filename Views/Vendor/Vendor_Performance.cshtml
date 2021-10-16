@@ -7,94 +7,8 @@
 @{
     ViewData["Title"] = "Vendor_Performance";
 }
-
-<h1>Vendor Performance Evaluation</h1>
-
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." title="Type in a name">
-<hr />
-
-<table class="table table-bordered" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                Vendor Name
-            </th>
-            <th>
-                Number of Product/Service Evaluated
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Percentage)
-            </th>
-            <th>
-                Grade
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfProducts)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Percentage)%
-            </td>
-
-            @{
-
-                if (item.Percentage >= 80 && item.Percentage <= 100)
-                {
-                    <td style="background-color:green; color: white;">
-                        GREAT
-                    </td>
-                }
-
-                else if (item.Percentage >= 56 && item.Percentage <= 79)
-                {
-                    <td style="background-color:blue; color:white;">
-                        GOOD
-                    </td>
-                }
-
-                else if (item.Percentage >= 46 && item.Percentage <= 55)
-                {
-                    <td style="background-color:gold; color:white;">
-                        WATCHLIST
-                    </td>
-                }
-                else if (item.NumberOfProducts == 0)
-                {
-                    <td>
-                        Vendor yet to be evaluated
-                    </td>
-                }
-                else
-                {
-                    <td style="background-color:indianred; color: white;">
-                        REPLACE
-                    </td>
-                }
-                <td>
-                    <div class="btn btn-info" style="background-color:wheat">
-                        @Html.ActionLink("View Products/Services", "Vendor_Check", new { vendorID = item.vendor_id })
-                    </div>
-
-                </td>
-
-            }
-
-
-        </tr>
-        }
-    </tbody>
-</table>
-
-
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -131,7 +45,7 @@
 
         .chartCard {
             width: 30vw;
-            height: calc(50vh - 15px);            
+            height: calc(50vh - 15px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -144,29 +58,243 @@
             border: solid 3px rgba(255, 26, 104, 1);
             background: white;
         }
+        .inforide {
+  box-shadow: 1px 2px 8px 0px #f1f1f1;
+  background-color: white;
+  border-radius: 8px;
+  height: 125px;
+}
+
+.rideone img {
+  width: 70%;
+}
+
+.ridetwo img {
+  width: 60%;
+}
+
+.ridethree img {
+  width: 50%;
+}
+
+.rideone {
+  background-color: #6CC785;
+  padding-top: 25px;
+  border-radius: 8px 0px 0px 8px;
+  text-align: center;
+  height: 125px;
+  margin-left: 15px;
+}
+
+.ridetwo {
+  background-color: #9A75FE;
+  padding-top: 30px;
+  border-radius: 8px 0px 0px 8px;
+  text-align: center;
+  height: 125px;
+  margin-left: 15px;
+}
+
+.ridethree {
+  background-color: #4EBCE5;
+  padding-top: 35px;
+  border-radius: 8px 0px 0px 8px;
+  text-align: center;
+  height: 125px;
+  margin-left: 15px;
+}
+
+.fontsty {
+  margin-right: -15px;
+}
+
+.fontsty h2{
+  color: #6E6E6E;
+  font-size: 35px;
+  margin-top: 15px;
+  text-align: right;
+  margin-right: 30px;
+}
+
+.fontsty h4{
+  color: #6E6E6E;
+  font-size: 25px;
+  margin-top: 20px;
+  text-align: right;
+  margin-right: 30px;
+}
+
+.content-wrapper {
+  min-height: calc(100vh - 56px);
+  padding-top: 4rem;
+  overflow-x: hidden;
+  background: transparent;
+}
 
     </style>
 </head>
 
- 
-
 <body>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">      
+            <div class="container-fluid">
+                <div class="row">
 
-    <div class="chartMenu" id="chart_container">
-        <center>
-            <p style="background-color:antiquewhite; color:black">VENDOR PERFORMANCE CHART</p>
-        </center>
+                    <!-- Icon Cards-->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                        <div class="inforide">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 col-sm-4 col-4 rideone">
+                                   
+                                </div>
+                                <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                    <h4>Employee</h4>
+                                    <h2>20</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    </div>
-    <div class="chartCard">
-        <div class="chartBox">
-            <p>Top 5 Performing Vendors</p>
-            <canvas id="mychart">
-            </canvas>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                        <div class="inforide">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridetwo">
+                                    
+                                </div>
+                                <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                    <h4>Clients</h4>
+                                    <h2>120</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                        <div class="inforide">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridethree">
+                                    
+                                </div>
+                                <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                    <h4>Jobs</h4>
+                                    <h2>50</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <br />
+        <div class="chartMenu" id="chart_container">
+            <center>
+                <p style="background-color:antiquewhite; color:black">VENDOR PERFORMANCE CHART</p>
+            </center>
+
         </div>
+        <div class="chartCard">
+            <div class="chartBox">
+                <p>Top 5 Performing Vendors</p>
+                <canvas id="mychart">
+                </canvas>
+            </div>
+        </div>
+
+        <h1>Vendor Performance Table</h1>
+
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." title="Type in a name">
+        <hr />
+
+        <table class="table table-striped" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Vendor Name
+                    </th>
+                    <th>
+                        Number of Product/Service Evaluated
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Percentage)
+                    </th>
+                    <th>
+                        Grade
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumberOfProducts)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Percentage)%
+                        </td>
+
+                        @{
+
+                            if (item.Percentage >= 80 && item.Percentage <= 100)
+                            {
+                                <td style="background-color:green; color: white;">
+                                    GREAT
+                                </td>
+                            }
+
+                            else if (item.Percentage >= 56 && item.Percentage <= 79)
+                            {
+                                <td style="background-color:blue; color:white;">
+                                    GOOD
+                                </td>
+                            }
+
+                            else if (item.Percentage >= 46 && item.Percentage <= 55)
+                            {
+                                <td style="background-color:gold; color:white;">
+                                    WATCHLIST
+                                </td>
+                            }
+                            else if (item.NumberOfProducts == 0)
+                            {
+                                <td>
+                                    Vendor yet to be evaluated
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="background-color:indianred; color: white;">
+                                    REPLACE
+                                </td>
+                            }
+                            <td>
+                                <div class="btn btn-info" style="background-color:wheat">
+                                    @Html.ActionLink("View Products/Services", "Vendor_Check", new { vendorID = item.vendor_id })
+                                </div>
+
+                            </td>
+
+                        }
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+        <hr />
+
+
+
     </div>
 
-    <script>
+</body>
+
+
+
+</html>
+
+<script>
         var percentArray = @Html.Raw(Json.Serialize(ViewBag.PER));
         var vendors = @Html.Raw(Json.Serialize(ViewBag.VENDORS));
         var ctx = $("#mychart");
@@ -225,7 +353,7 @@
 
         function myFunction() {
 
-            // Declare variables 
+            // Declare variables
             var input = document.getElementById("myInput");
             var filter = input.value.toUpperCase();
             var table = document.getElementById("myTable");
@@ -257,13 +385,4 @@
             }
 
         }
-
-
-
-    </script>
-        
-</body>
-
-
-
-</html>
+</script>        

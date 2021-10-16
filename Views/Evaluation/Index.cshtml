@@ -1,51 +1,54 @@
 ﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.Evaluation>
 
-@{
-    ViewData["Title"] = "Index";
-}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        @{
+            ViewData["Title"] = "Index";
+        }
 
-<h1>Evaluations</h1>
+        <h1>Evaluations</h1>
 
-@*<p>
-    <a asp-action="Create">Add New Evaluation</a>
-</p>*@
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Grade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product_Service)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Criteria)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Grade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product_Service.product_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Criteria.criteria_name)
-            </td>
-            
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.evaluationID">Edit</a> |*@
-                <div class="btn-group">
-                    
-                    <div class="column" style="padding-left:5px"><a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.evaluationID">Details</a> </div>
-                    <div class="column" style="padding-left: 5px; "><a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.evaluationID">Delete</a></div>
-                </div>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        @*<p>
+                <a asp-action="Create">Add New Evaluation</a>
+            </p>*@
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Grade)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product_Service)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Criteria)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Service.product_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Criteria.criteria_name)
+                        </td>
+
+                        <td>
+                            @*<a asp-action="Edit" asp-route-id="@item.evaluationID">Edit</a> |*@
+                            <div class="btn-group">
+
+                                <div class="column" style="padding-left:5px"><a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.evaluationID">Details</a> </div>
+                                <div class="column" style="padding-left: 5px; "><a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.evaluationID">Delete</a></div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
