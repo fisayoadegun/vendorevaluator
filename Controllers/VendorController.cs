@@ -112,6 +112,12 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 vendor_evaluate.CompanyName = item.company_name;
                 vendor_evaluate.vendor_id = item.vendorID;
                 var criteria = await _context.Criteria.ToListAsync();
+                vendor_evaluate.NumberofVendors = vendors.Count();
+                vendor_evaluate.NumberOfProducts = _context.Products_Services.Count();
+                vendor_evaluate.NumberofDepartments = _context.Departments.Count();
+                ViewData["vendor_count"] = vendor_evaluate.NumberofVendors;
+                ViewData["product_count"] = vendor_evaluate.NumberOfProducts;
+                ViewData["department_count"] = vendor_evaluate.NumberofDepartments;
                 var overallvendorscore = 0;
                 
                 foreach (var product in item.Products_Services)
@@ -134,6 +140,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 
                 
             }
+            
             ViewBag.PER = vendor_evaluations.OrderByDescending(x => x.Percentage).Select(x => x.Percentage).Take(5).ToList();
             ViewBag.VENDORS = vendor_evaluations.OrderByDescending(x => x.Percentage).Select(x => x.CompanyName).Take(5).ToList();
             return View(vendor_evaluations.OrderByDescending(x => x.Percentage));

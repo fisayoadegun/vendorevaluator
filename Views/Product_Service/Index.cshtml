@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.EvaluationViewModel>
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    
         @{
             ViewData["Title"] = "Index";
         }      
@@ -41,64 +41,63 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProductName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CompanyName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Date_Delivered)
-                            </td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date_Delivered)
+                        </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DepartmentName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Score)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Percentage)%
-                            </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DepartmentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Score)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Percentage)%
+                        </td>                        
+                        <td>
+                            @{
+                                if (!item.Evaluated)
+                                {
+                                    <a class="btn btn-light" asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Admin Evaluation</a>
+                                }
+                                else
+                                {
 
-
-                            <td>
-                                <div class="row">
-                                    <div class="column" style="padding-left:15px">
-                                        @{
-                                            if (!item.Evaluated)
-                                            {
-                                                <a class="btn btn-light" asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Admin Evaluation</a>
-                                            }
-                                            else
-                                            {
-
-                                                <a class="btn btn-success btn-sm active" role="button" aria-pressed="true">Evaluated</a>
-                                            }
-                                        }
-
-                                        @{
-                                            if (!item.departmental_evaluation)
-                                            {
-                                                <a class="btn btn-light" style="padding-top:10px" asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id"> Departmental Evaluation </a>
-                                                <br />
-                                            }
-                                        }
-                                    </div>
-                                    <div class="column" style="padding-left:15px"><a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.product_id">Details</a> </div>
-                                    <div class="column" style="padding-left:15px;"><a class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" asp-action="Edit" asp-route-id="@item.product_id">Edit</a></div>
-
-                                    <div class="column" style="padding-left: 15px;"><a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.product_id">Delete</a></div>
-                                </div>
-
-                            </td>
-                        </tr>
+                                    <a class="btn btn-success btn-sm active" role="button" aria-pressed="true">Evaluated</a>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (!item.departmental_evaluation)
+                                {
+                                    <a class="btn btn-light" style="padding-top:10px" asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id"> Departmental Evaluation </a>
+                                    <br />
+                                }
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" asp-action="Edit" asp-route-id="@item.product_id">Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.product_id">Details</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.product_id">Delete</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
 
             </table>
-        </div>
+        
         
 
         <script>

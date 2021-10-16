@@ -20,6 +20,10 @@ namespace GMTVendorEvaluationWebApp.ViewModels
 
         public int NumberOfProducts { get; set; }
 
+        public int NumberofVendors { get; set; }
+
+        public int NumberofDepartments { get; set; }
+
         public IEnumerable<Vendor> Vendors { get; set; }
         public IEnumerable<Product_Service> Product_Services { get; set; }
         public IEnumerable<Evaluation> Evaluations { get; set; }

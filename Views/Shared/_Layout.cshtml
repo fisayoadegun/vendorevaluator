@@ -128,7 +128,7 @@
 
 
 
-                    
+
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li class="nav-item">
@@ -139,7 +139,7 @@
                                 <button type="submit" class="nav-link btn btn-link text-info">Logout</button>
                             </form>
                         </li>
- }
+                    }
                     else
                     {
                         <li class="nav-item">
@@ -150,7 +150,7 @@
                             <a class="nav-link text-dark" asp-controller="Account"
                                asp-action="Register">Register</a>
                         </li>
-}
+                    }
                 </ul>
 
 
@@ -189,7 +189,7 @@
                 <ul class="nav nav-sidebar">
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        
+
                         <li class="nav-item">
                             <form class="form-inline" asp-controller="Account" asp-action="Logout">
                                 <button type="submit" class="nav-link btn btn-link text-info">Logout</button>
@@ -212,21 +212,22 @@
 
         </div>
     </div>
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - GMT NIGERIA LIMITED
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+            <footer class="border-top footer text-muted">
+                <div class="container">
+                    &copy; 2021 - GMT NIGERIA LIMITED
+                </div>
+            </footer>
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            @RenderSection("Scripts", required: false)
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
 
 
 </body>
