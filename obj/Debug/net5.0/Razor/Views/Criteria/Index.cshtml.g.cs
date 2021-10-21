@@ -26,8 +26,15 @@ using GMTVendorEvaluationWebApp.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"761b5b8b2006173e28e225d1981e4c915eb164b8", @"/Views/Criteria/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"09eafde8e6fbec5f58289a4098e7eb94ebb7a3a9", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a0236df62f599e5bac1f0c8e3c2075c2791e158", @"/Views/_ViewImports.cshtml")]
     public class Views_Criteria_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<GMTVendorEvaluationWebApp.Models.Criteria>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -74,7 +81,7 @@ using GMTVendorEvaluationWebApp.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n        <h1>Criteria</h1>\r\n\r\n        <p>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "761b5b8b2006173e28e225d1981e4c915eb164b86491", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "761b5b8b2006173e28e225d1981e4c915eb164b86689", async() => {
                 WriteLiteral("Add New Criteria");
             }
             );
@@ -115,7 +122,7 @@ using GMTVendorEvaluationWebApp.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "761b5b8b2006173e28e225d1981e4c915eb164b88921", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "761b5b8b2006173e28e225d1981e4c915eb164b89119", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -149,7 +156,7 @@ using GMTVendorEvaluationWebApp.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "761b5b8b2006173e28e225d1981e4c915eb164b811490", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "761b5b8b2006173e28e225d1981e4c915eb164b811688", async() => {
                 WriteLiteral("Details");
             }
             );
@@ -183,7 +190,7 @@ using GMTVendorEvaluationWebApp.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "761b5b8b2006173e28e225d1981e4c915eb164b814061", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "761b5b8b2006173e28e225d1981e4c915eb164b814259", async() => {
                 WriteLiteral("Delete");
             }
             );

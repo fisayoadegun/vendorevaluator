@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class DepartmentController : Controller
     {
         private readonly EvaluationContext _context;

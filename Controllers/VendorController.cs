@@ -18,7 +18,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class VendorController : Controller
     {
         private readonly EvaluationContext _context;
@@ -50,6 +51,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             int pageSize = 10;
             return View(await PaginatedList<Vendor>.CreateAsync(vendors.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
+       
 
         [HttpGet]
         public async Task<IActionResult> Vendor_Upload(List<Vendor> vendors = null)

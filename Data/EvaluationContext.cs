@@ -30,5 +30,7 @@ namespace GMTVendorEvaluationWebApp.Data
             modelBuilder.Entity<Evaluation>().ToTable("Evaluation");
             modelBuilder.Entity<VendorEvaluation>().HasNoKey();
         }
+
+        public DbSet<GMTVendorEvaluationWebApp.Models.UserRoles> UserRoles { get; set; }
     }
 }

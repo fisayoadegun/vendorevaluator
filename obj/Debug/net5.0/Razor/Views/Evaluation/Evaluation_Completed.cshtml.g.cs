@@ -26,8 +26,15 @@ using GMTVendorEvaluationWebApp.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bf81b3a96fc7f08031e62e4912a14f7fbf6b865d", @"/Views/Evaluation/Evaluation_Completed.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"09eafde8e6fbec5f58289a4098e7eb94ebb7a3a9", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a0236df62f599e5bac1f0c8e3c2075c2791e158", @"/Views/_ViewImports.cshtml")]
     public class Views_Evaluation_Evaluation_Completed : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<GMTVendorEvaluationWebApp.Models.Evaluation>
     {
         #line hidden
@@ -73,7 +80,7 @@ using GMTVendorEvaluationWebApp.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n\r\n<html>\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bf81b3a96fc7f08031e62e4912a14f7fbf6b865d3794", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bf81b3a96fc7f08031e62e4912a14f7fbf6b865d3992", async() => {
                 WriteLiteral("\r\n    <div style=\"position:relative; top:200px;\">\r\n        <h1>\r\n            Evaluation Completed\r\n        </h1>\r\n        <p>\r\n            Thank you for your feedback\r\n        </p>\r\n\r\n\r\n    </div>\r\n    \r\n\r\n");
             }
             );

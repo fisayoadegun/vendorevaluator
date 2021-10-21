@@ -1,4 +1,8 @@
-﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.EvaluationViewModel>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@model IEnumerable<GMTVendorEvaluationWebApp.Models.EvaluationViewModel>
 
     
         @{
@@ -60,38 +64,52 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Percentage)%
-                        </td>                        
-                        <td>
-                            @{
-                                if (!item.Evaluated)
-                                {
-                                    <a class="btn btn-light" asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Admin Evaluation</a>
-                                }
-                                else
-                                {
+                        </td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("User"))
+                            {
+                                <td>
+                                    <a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.product_id">Details</a>
+                                </td>
+                            }
+                            else if (User.IsInRole("Administrator"))
+                            {
+                                <td>
 
-                                    <a class="btn btn-success btn-sm active" role="button" aria-pressed="true">Evaluated</a>
-                                }
+                                    @{
+                                        if (!item.Evaluated)
+                                        {
+                                            <a class="btn btn-light" asp-controller="Evaluation" asp-action="Create" asp-route-id="@item.product_id">Admin Evaluation</a>
+                                        }
+                                        else
+                                        {
+
+                                            <a class="btn btn-success btn-sm active" role="button" aria-pressed="true">Evaluated</a>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @{
+                                        if (!item.departmental_evaluation)
+                                        {
+                                            <a class="btn btn-light" style="padding-top:10px" asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id"> Departmental Evaluation </a>
+                                            <br />
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <a class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" asp-action="Edit" asp-route-id="@item.product_id">Edit</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.product_id">Details</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.product_id">Delete</a>
+                                </td>
                             }
-                        </td>
-                        <td>
-                            @{
-                                if (!item.departmental_evaluation)
-                                {
-                                    <a class="btn btn-light" style="padding-top:10px" asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id"> Departmental Evaluation </a>
-                                    <br />
-                                }
-                            }
-                        </td>
-                        <td>
-                            <a class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" asp-action="Edit" asp-route-id="@item.product_id">Edit</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-info btn-sm active" role="button" aria-pressed="true" asp-action="Details" asp-route-id="@item.product_id">Details</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger btn-sm active" role="button" aria-pressed="true" asp-action="Delete" asp-route-id="@item.product_id">Delete</a>
-                        </td>
+                        }
+
                     </tr>
                     }
                 </tbody>

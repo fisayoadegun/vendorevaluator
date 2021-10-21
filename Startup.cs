@@ -33,6 +33,7 @@ namespace GMTVendorEvaluationWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             services.AddDbContext<EvaluationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IEvaluationServiceInterface, EvaluationService>();
@@ -47,14 +48,26 @@ namespace GMTVendorEvaluationWebApp
 
                 opt.User.RequireUniqueEmail = true;
             })
+              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<ApplicationContext>()
              .AddDefaultTokenProviders();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdministratorRole",
+                     policy => policy.RequireRole("Administrator"));
+            });
+
+
+
             services.Configure<DataProtectionTokenProviderOptions>(opt =>
                opt.TokenLifespan = TimeSpan.FromHours(2));
-            services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
+            //services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
 
             services.AddAutoMapper(typeof(Startup));
+            services.AddAuthorization(options =>
+           options.AddPolicy("Administrator",
+               policy => policy.RequireClaim("User")));
 
             var emailConfig = Configuration
                 .GetSection("EmailConfiguration")
@@ -69,7 +82,7 @@ namespace GMTVendorEvaluationWebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {

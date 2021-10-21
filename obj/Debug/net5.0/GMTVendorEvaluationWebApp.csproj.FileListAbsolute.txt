@@ -371,3 +371,7 @@ C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Vie
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Account\ResetPasswordConfirmation.cshtml.g.cs
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Shared\_AuthenticationLayout.cshtml.g.cs
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Admin\create.cshtml.g.cs
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Admin\Update.cshtml.g.cs
+C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\obj\Debug\net5.0\Razor\Views\Account\AccessDenied.cshtml.g.cs

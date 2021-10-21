@@ -19,7 +19,7 @@ namespace GMTVendorEvaluationWebApp.Migrations.Application
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GMTVendorEvaluationWebApp.Account.User", b =>
+            modelBuilder.Entity("GMTVendorEvaluationWebApp.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -232,7 +232,7 @@ namespace GMTVendorEvaluationWebApp.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("GMTVendorEvaluationWebApp.Account.User", null)
+                    b.HasOne("GMTVendorEvaluationWebApp.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -241,7 +241,7 @@ namespace GMTVendorEvaluationWebApp.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("GMTVendorEvaluationWebApp.Account.User", null)
+                    b.HasOne("GMTVendorEvaluationWebApp.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -256,7 +256,7 @@ namespace GMTVendorEvaluationWebApp.Migrations.Application
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GMTVendorEvaluationWebApp.Account.User", null)
+                    b.HasOne("GMTVendorEvaluationWebApp.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -265,7 +265,7 @@ namespace GMTVendorEvaluationWebApp.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("GMTVendorEvaluationWebApp.Account.User", null)
+                    b.HasOne("GMTVendorEvaluationWebApp.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

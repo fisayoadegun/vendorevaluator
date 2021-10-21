@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
+
     [Authorize]
     public class CriteriaController : Controller
     {
@@ -21,12 +22,16 @@ namespace GMTVendorEvaluationWebApp.Controllers
             _context = context;
         }
 
+        
+        [Authorize(Roles = "Administrator")]
+
         // GET: Criteria
         public async Task<IActionResult> Index()
         {
             return View(await _context.Criteria.ToListAsync());
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Criteria/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,6 +50,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(criteria);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Criteria/Create
         public IActionResult Create()
         {
@@ -54,6 +60,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         // POST: Criteria/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("criteriaID,criteria_name")] Criteria criteria)
@@ -67,6 +74,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(criteria);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Criteria/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -86,6 +94,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         // POST: Criteria/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("criteriaID,criteria_name")] Criteria criteria)
@@ -118,6 +127,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(criteria);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Criteria/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -136,6 +146,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(criteria);
         }
 
+        [Authorize(Roles = "Administrator")]
         // POST: Criteria/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -146,6 +157,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool CriteriaExists(int id)
         {

@@ -22,6 +22,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Administrator, User")]
         // GET: Product_Service
         public async Task<IActionResult> Index(string searchString, string productFilter)
         {
@@ -62,6 +63,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             
         }
 
+        [Authorize(Roles = "Administrator, User")]
         // GET: Product_Service/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -84,6 +86,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(product_service);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Product_Service/Create
         public IActionResult Create()
         {
@@ -97,6 +100,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         // POST: Product_Service/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("product_serviceID,vendorID,departmentID,product_name,Date_delivered")] Product_Service product_Service)
@@ -114,6 +118,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(product_Service);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Product_Service/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -139,6 +144,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         // POST: Product_Service/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int? id, [Bind("product_serviceID,vendorID,departmentID,product_name,Date_delivered")] Product_Service product_Service)
@@ -189,6 +195,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             ViewBag.vendorID = new SelectList(vendorsQuery.AsNoTracking(), "vendorID", "company_name", selectedVendor);
         }
         // GET: Product_Service/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -210,6 +217,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         }
 
         // POST: Product_Service/Delete/5
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

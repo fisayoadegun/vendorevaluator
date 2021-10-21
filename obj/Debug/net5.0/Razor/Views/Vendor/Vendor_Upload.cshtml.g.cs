@@ -26,8 +26,15 @@ using GMTVendorEvaluationWebApp.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8808c3ba478ace85da1700be9dd49fa9d217f593", @"/Views/Vendor/Vendor_Upload.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"09eafde8e6fbec5f58289a4098e7eb94ebb7a3a9", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a0236df62f599e5bac1f0c8e3c2075c2791e158", @"/Views/_ViewImports.cshtml")]
     public class Views_Vendor_Vendor_Upload : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<GMTVendorEvaluationWebApp.Models.Vendor>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Vendor", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -60,7 +67,7 @@ using GMTVendorEvaluationWebApp.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n\r\n    <h4>\r\n        The Excel file headers should have the following values: (company_name,\tcontact_person,\tcompany_address,\ttype_of_business,\tphone_number,\temail)\r\n    </h4>\r\n\r\n    <br />\r\n    <br />\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8808c3ba478ace85da1700be9dd49fa9d217f5934830", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8808c3ba478ace85da1700be9dd49fa9d217f5935028", async() => {
                 WriteLiteral("\r\n        <input type=\"file\" name=\"file\" />\r\n        <hr />\r\n        <button style=\"color:white; background-color:blue;\" type=\"submit\">Upload</button>\r\n    ");
             }
             );

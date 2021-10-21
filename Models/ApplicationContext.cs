@@ -5,15 +5,18 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using GMTVendorEvaluationWebApp.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace GMTVendorEvaluationWebApp.Models
 {
-    public class ApplicationContext : IdentityDbContext<User>
+    public class ApplicationContext : IdentityDbContext<User, IdentityRole, string>
     {
-        public ApplicationContext(DbContextOptions options)
-       : base(options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+      : base(options)
         {
         }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +24,8 @@ namespace GMTVendorEvaluationWebApp.Models
 
            
         }
+
+       
 
         
     }

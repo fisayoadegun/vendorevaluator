@@ -10,9 +10,11 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using GMTVendorEvaluationWebApp.Controllers;
+using System.Linq;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
+
     public class AccountController : Controller
     {
         private readonly IMapper _mapper;
@@ -77,17 +79,31 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 return View(userModel);
             }
 
+            var signedUser = await _userManager.FindByEmailAsync(userModel.Email);
             var result = await _signInManager.PasswordSignInAsync(userModel.Email, userModel.Password, userModel.RememberMe, false);
             if (result.Succeeded)
             {
-                return RedirectToAction(nameof(VendorController.Vendor_Performance), "Vendor");
-                //return RedirectToAction(actionName: nameof(Vendor_Performance), controllerName: "Vendor");
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+
+                var roles = await _userManager.GetRolesAsync(signedUser);
+
+                var matchingvalues = roles.SingleOrDefault(stringToCheck => stringToCheck.Equals("User"));
+                var nextmatchinvalues = roles.SingleOrDefault(stringTocheck => stringTocheck.Equals("Administrator"));
+                if (matchingvalues != null)
+                {
+                    return RedirectToAction("Index", "Product_Service", new { area = "User" });
+                }
+                else if (nextmatchinvalues != null)
+                {
+                    return RedirectToAction("Vendor_Performance", "Vendor", new { area = "Administrator" });
+                }                
             }
             else
             {
                 ModelState.AddModelError("", "Invalid UserName or Password");
                 return View();
             }
+            return RedirectToAction(nameof(VendorController.Vendor_Performance), "Vendor");
         }
 
         [HttpPost]
@@ -174,6 +190,10 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 return Redirect(returnUrl);
             else
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Home");
+        }
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
