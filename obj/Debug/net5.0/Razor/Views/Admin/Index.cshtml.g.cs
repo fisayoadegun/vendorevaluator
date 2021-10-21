@@ -41,7 +41,7 @@ using GMTVendorEvaluationWebApp.TagHelpers;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"37ae6a9186da8fc4d3ee963daa18aab049c67df5", @"/Views/Admin/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a0236df62f599e5bac1f0c8e3c2075c2791e158", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bef16c19e226af14357f195132318f0aad213b63", @"/Views/_ViewImports.cshtml")]
     public class Views_Admin_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<IdentityRole>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,6 +71,7 @@ using GMTVendorEvaluationWebApp.TagHelpers;
             }
         }
         private global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper;
+        private global::GMTVendorEvaluationWebApp.TagHelpers.RoleUsersTH __GMTVendorEvaluationWebApp_TagHelpers_RoleUsersTH;
         private global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper;
         private global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper;
         #pragma warning disable 1998
@@ -78,7 +79,7 @@ using GMTVendorEvaluationWebApp.TagHelpers;
         {
             WriteLiteral("\r\n");
             WriteLiteral("\r\n<h1 class=\"bg-info text-white\">All Roles</h1>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37ae6a9186da8fc4d3ee963daa18aab049c67df55800", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37ae6a9186da8fc4d3ee963daa18aab049c67df55926", async() => {
                 WriteLiteral("Create a Role");
             }
             );
@@ -119,18 +120,32 @@ using GMTVendorEvaluationWebApp.TagHelpers;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("</td>\r\n            <td");
-            BeginWriteAttribute("i-role", " i-role=\"", 517, "\"", 534, 1);
+            WriteLiteral("</td>\r\n            ");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("td", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37ae6a9186da8fc4d3ee963daa18aab049c67df58076", async() => {
+            }
+            );
+            __GMTVendorEvaluationWebApp_TagHelpers_RoleUsersTH = CreateTagHelper<global::GMTVendorEvaluationWebApp.TagHelpers.RoleUsersTH>();
+            __tagHelperExecutionContext.Add(__GMTVendorEvaluationWebApp_TagHelpers_RoleUsersTH);
+            BeginWriteTagHelperAttribute();
 #nullable restore
 #line 16 "C:\Users\ADEGUN FISAYO\Documents\gmt-vendor-evaluator\Views\Admin\Index.cshtml"
-WriteAttributeValue("", 526, role.Id, 526, 8, false);
+            WriteLiteral(role.Id);
 
 #line default
 #line hidden
 #nullable disable
-            EndWriteAttribute();
-            WriteLiteral("></td>\r\n            <td>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37ae6a9186da8fc4d3ee963daa18aab049c67df58336", async() => {
+            __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+            __GMTVendorEvaluationWebApp_TagHelpers_RoleUsersTH.Role = __tagHelperStringValueBuffer;
+            __tagHelperExecutionContext.AddTagHelperAttribute("i-role", __GMTVendorEvaluationWebApp_TagHelpers_RoleUsersTH.Role, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral("\r\n            <td>");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37ae6a9186da8fc4d3ee963daa18aab049c67df59627", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -162,7 +177,7 @@ WriteAttributeValue("", 526, role.Id, 526, 8, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</td>\r\n            <td>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37ae6a9186da8fc4d3ee963daa18aab049c67df510641", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37ae6a9186da8fc4d3ee963daa18aab049c67df511932", async() => {
                 WriteLiteral("\r\n                    <button type=\"submit\" class=\"btn btn-sm btn-danger\">\r\n                        Delete\r\n                    </button>\r\n                ");
             }
             );
