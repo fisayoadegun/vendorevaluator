@@ -93,10 +93,13 @@
                                     @{
                                         if (!item.departmental_evaluation)
                                         {
-                                            <a class="btn btn-light" style="padding-top:10px" asp-controller="Evaluation" asp-action="Edit" asp-route-id="@item.product_id"> Departmental Evaluation </a>
+                                            <a class="btn btn-light btn-sm active" role="button" aria-pressed="true" asp-controller="Evaluation" asp-action="Email" asp-route-id="@item.product_id">Departmental Evaluation</a>
                                             <br />
                                         }
                                     }
+                                </td>
+                                <td>
+                                    
                                 </td>
                                 <td>
                                     <a class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" asp-action="Edit" asp-route-id="@item.product_id">Edit</a>

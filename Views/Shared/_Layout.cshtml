@@ -98,6 +98,7 @@
                                 <button type="submit" class="nav-link btn btn-link text-info" style="color:white">Logout</button>
                             </form>
                         </li>
+                       
                     }
                     else
                     {
@@ -161,6 +162,18 @@
                 <ul class="nav nav-sidebar">
                     @if (SignInManager.IsSignedIn(User))
                     {
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Administrator"))
+                            {
+                                <li class="nav-item">
+                                    <a class="form-inline" asp-controller="Admin" asp-action="Index">
+                                        User Roles
+                                    </a>
+
+                                </li>
+                            }
+                        }
 
                         <li class="nav-item">
                             <form class="form-inline" asp-controller="Account" asp-action="Logout">

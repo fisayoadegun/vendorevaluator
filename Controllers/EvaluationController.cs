@@ -10,10 +10,14 @@ using GMTVendorEvaluationWebApp.Models;
 using GMTVendorEvaluationWebApp.ViewModels;
 using GMTVendorEvaluationWebApp.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using MailKit.Net.Smtp;
+using MimeKit;
+using System.IO;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class EvaluationController : Controller
     {
         private readonly IEvaluationServiceInterface _evaluationService;
@@ -26,6 +30,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         }
 
         // GET: Evaluation
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
             var evaluations = _context.Evaluations
@@ -55,6 +60,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(evaluation);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Evaluation/Create
         public async Task<IActionResult> Create(int? id)
         {
@@ -72,6 +78,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
         // POST: Evaluation/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CriteriaOptions evaluation)
@@ -133,12 +140,16 @@ namespace GMTVendorEvaluationWebApp.Controllers
                 return NotFound();
             }
 
+            //var url = this.Url.Action("Edit", "Evaluation", null);
+            //var url = Url.Action("Edit", "Evaluation", HttpContext.Request.Url.Scheme, HttpContext.Request.Url.Authority);
+            string url = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + Url.Action("Edit", "Evaluation");
 
             var product = await this._context.Products_Services.FindAsync(id);
             ViewData["product"] = product;
             ViewData["vendor"] = await this._context.Vendors.FindAsync(product.vendorID);
             
             ViewData["productid"] = id;
+            ViewData["url"] = url;
             var eva = await _context.Evaluations.ToListAsync();
             if (product == null)
 
@@ -148,6 +159,44 @@ namespace GMTVendorEvaluationWebApp.Controllers
             PopulateProductsDropDownList();
             PopulateCriteriaDropDownList();
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Email(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            
+            var product = await this._context.Products_Services.FindAsync(id);
+            string url = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + Url.Action("Edit", "Evaluation") + "/" + product.product_serviceID;
+            var productname = product.product_name;
+            ViewData["product"] = product;
+            ViewData["department"] = await this._context.Departments.FindAsync(product.departmentID);
+            var departmentinfo = ViewData["department"] as Department;
+            
+            //ViewData["url"] = url;
+            
+
+
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Test Project", "fisayoadegun@gmail.com"));
+            message.To.Add(new MailboxAddress(departmentinfo.email));
+            message.Subject = "Product/Service Evaluation";
+            message.Body = new BodyBuilder { HtmlBody = string.Format("<h3 style='color:black;'>Click on the link below to Evaluate the Product/Service({0}) delivered to your Department <hr /> {1}</h3>", productname, url ) }.ToMessageBody();
+    
+            
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate("fisayoadegun@gmail.com", "htceypwgdcrrpdyn");
+
+                client.Send(message);
+                client.Disconnect(true);
+            }
+            return View();
+
         }
 
         // POST: Evaluation/Edit/5
@@ -280,6 +329,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             ViewBag.criteriaID = new SelectList(criteriaQuery.AsNoTracking(), "criteriaID", "criteria_name", selectedCriteria);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Evaluation/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -301,6 +351,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(evaluation);
         }
 
+        [Authorize(Roles = "Administrator")]
         // POST: Evaluation/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
