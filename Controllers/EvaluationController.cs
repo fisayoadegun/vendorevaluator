@@ -175,22 +175,22 @@ namespace GMTVendorEvaluationWebApp.Controllers
             ViewData["product"] = product;
             ViewData["department"] = await this._context.Departments.FindAsync(product.departmentID);
             var departmentinfo = ViewData["department"] as Department;
-            
+
             //ViewData["url"] = url;
-            
+
 
 
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Test Project", "fisayoadegun@gmail.com"));
+            message.From.Add(new MailboxAddress("GMT Vendor Evaluation", "Auto.Mail@gmt-limited.com"));
             message.To.Add(new MailboxAddress(departmentinfo.email));
-            message.Subject = "Product/Service Evaluation";
-            message.Body = new BodyBuilder { HtmlBody = string.Format("<h3 style='color:black;'>Click on the link below to Evaluate the Product/Service({0}) delivered to your Department <hr /> {1}</h3>", productname, url ) }.ToMessageBody();
-    
-            
+            message.Subject = "GMT Vendor Evaluation Evaluation";
+            message.Body = new BodyBuilder { HtmlBody = string.Format("<h3 style='color:black;'>Click on the link below to Evaluate this Product/Service({0}) delivered to your Department <hr /> {1}</h3>", productname, url) }.ToMessageBody();
+
+
             using (var client = new SmtpClient())
             {
-                client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("fisayoadegun@gmail.com", "htceypwgdcrrpdyn");
+                client.Connect("smtp.office365.com", 587, false);
+                client.Authenticate("Auto.Mail@gmt-limited.com", "Hav!34iT");
 
                 client.Send(message);
                 client.Disconnect(true);

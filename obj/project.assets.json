@@ -9805,7 +9805,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\": {}
+    "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Progress\\ToolboxNugetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -9816,16 +9817,21 @@
       "packagesPath": "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Progress\\ToolboxNugetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\ADEGUN FISAYO\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.telerik.com/nuget": {}
       },
       "frameworks": {
         "net5.0": {

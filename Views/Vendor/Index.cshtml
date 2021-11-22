@@ -1,5 +1,5 @@
-﻿@*@model IEnumerable<GMTVendorEvaluationWebApp.Models.Vendor>*@
-@model PaginatedList<GMTVendorEvaluationWebApp.Models.Vendor>
+﻿@model IEnumerable<GMTVendorEvaluationWebApp.Models.Vendor>
+@*@model PaginatedList<GMTVendorEvaluationWebApp.Models.Vendor>*@
 
     
         @{
@@ -79,7 +79,7 @@
                 </tbody>
             </table>
 
-            @{
+            @*@{
                 var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
                 var nextDisabled = !Model.HasNextPage ? "disabled" : "";
             }
@@ -95,7 +95,7 @@
                asp-route-vendorFilter="@ViewData["VendorFilter"]"
                class="btn btn-default @nextDisabled">
                 Next
-            </a>
+            </a>*@
         
         
 

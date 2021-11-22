@@ -30,28 +30,32 @@ namespace GMTVendorEvaluationWebApp.Controllers
         }
 
         // GET: Vendor
-        public async Task<IActionResult> Index(string searchString, string vendorFilter, int? pageNumber)
+        //public async Task<IActionResult> Index(string searchString, string vendorFilter, int? pageNumber)
+        //{
+        //    ViewData["VendorFilter"] = searchString;
+        //    if (searchString != null)
+        //    {
+        //        pageNumber = 1;
+        //    }
+        //    else
+        //    {
+        //        searchString = vendorFilter;
+        //    }
+        //    var vendors = from s in _context.Vendors
+        //                    select s;
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        vendors = vendors.Where(s => s.company_name.Contains(searchString)
+        //                               || s.type_of_business.Contains(searchString));
+        //    }
+        //    int pageSize = 10;
+        //    return View(await PaginatedList<Vendor>.CreateAsync(vendors.AsNoTracking(), pageNumber ?? 1, pageSize));
+        //}
+        public async Task<IActionResult> Index()
         {
-            ViewData["VendorFilter"] = searchString;
-            if (searchString != null)
-            {
-                pageNumber = 1;
-            }
-            else
-            {
-                searchString = vendorFilter;
-            }
-            var vendors = from s in _context.Vendors
-                            select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                vendors = vendors.Where(s => s.company_name.Contains(searchString)
-                                       || s.type_of_business.Contains(searchString));
-            }
-            int pageSize = 10;
-            return View(await PaginatedList<Vendor>.CreateAsync(vendors.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await _context.Vendors.ToListAsync());
         }
-       
+
 
         [HttpGet]
         public async Task<IActionResult> Vendor_Upload(List<Vendor> vendors = null)
