@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GMTVendorEvaluationWebApp.Data;
 using GMTVendorEvaluationWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using GMTVendorEvaluationWebApp.ViewModels;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
@@ -29,8 +30,9 @@ namespace GMTVendorEvaluationWebApp.Controllers
             var products_services = await _context.Products_Services
                 .Include(x => x.Vendor)
                 .Include(x => x.Evaluations)
-                .Include(x => x.Department)
-                .OrderByDescending(x => x.Date_delivered)
+                .Include(x => x.Department)                
+                .OrderByDescending(x => x.departmental_evaluation == false)
+                    .ThenByDescending(p => p.Date_delivered)
                 .AsNoTracking().ToListAsync();
             
 

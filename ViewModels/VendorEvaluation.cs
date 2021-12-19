@@ -27,5 +27,7 @@ namespace GMTVendorEvaluationWebApp.ViewModels
         public IEnumerable<Vendor> Vendors { get; set; }
         public IEnumerable<Product_Service> Product_Services { get; set; }
         public IEnumerable<Evaluation> Evaluations { get; set; }
+
+        public IEnumerable<EvaluationViewModel> EvaluationViewModels { get; set; }
     }
 }

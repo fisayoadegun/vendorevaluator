@@ -1,16 +1,16 @@
-﻿using System;
+﻿using GMTVendorEvaluationWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GMTVendorEvaluationWebApp.Models
+namespace GMTVendorEvaluationWebApp.ViewModels
 {
-    public class EvaluationViewModel
+    public class VendorProductViewModel
     {
+        public int vendor_id { get; set; }
         public int product_id { get; set; }
-
-        public bool Evaluated { get; set; }
-        public bool departmental_evaluation { get; set; }
+                
         public string ProductName { get; set; }
 
         public string CompanyName { get; set; }
@@ -22,6 +22,9 @@ namespace GMTVendorEvaluationWebApp.Models
         public double Score { get; set; }
 
         public double Percentage { get; set; }
-        
+
+        public IEnumerable<Vendor> Vendors { get; set; }
+        public IEnumerable<Product_Service> Product_Services { get; set; }
+        public IEnumerable<Evaluation> Evaluations { get; set; }
     }
 }

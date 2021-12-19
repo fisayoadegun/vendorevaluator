@@ -58,7 +58,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Vendor_Upload(List<Vendor> vendors = null)
+        public IActionResult Vendor_Upload(List<Vendor> vendors = null)
         {
             vendors = vendors == null ? new List<Vendor>() : vendors;
             return View();
@@ -152,6 +152,81 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(vendor_evaluations.OrderByDescending(x => x.Percentage));
         }
 
+        //public async Task<IActionResult> Vendor_Check(int? id, int? vendorID)
+        //{
+        //    var vendor_check = new EvaluationViewModel();
+        //    vendor_check.Vendors = await _context.Vendors
+        //        .Include(x => x.Products_Services)
+        //            .ThenInclude(x => x.Evaluations)
+        //                .ThenInclude(x => x.Criteria)
+        //        .Include(x => x.Products_Services)
+        //            .ThenInclude(x => x.Department)                                    
+        //        .AsNoTracking().ToListAsync();
+
+        //    var vendors = await _context.Vendors
+        //       .Include(x => x.Products_Services)
+        //           .ThenInclude(x => x.Evaluations)
+        //               .ThenInclude(x => x.Criteria)
+        //       .AsNoTracking().ToListAsync();
+
+        //    var products_services = await _context.Products_Services
+        //       .Include(x => x.Vendor)
+        //       .Include(x => x.Evaluations)
+        //       .Include(x => x.Department)
+        //       .OrderByDescending(x => x.departmental_evaluation == false)
+        //           .ThenByDescending(p => p.Date_delivered)
+        //       .AsNoTracking().ToListAsync();
+        //    //var evaluations = new List<EvaluationViewModel>();                           
+
+
+
+        //        //vendorID = vendor.vendorID;
+        //        if (vendorID != null)
+        //        {
+
+        //            vendor_check.Product_Services = vendor_check.Vendors.Where(
+        //                x => x.vendorID == vendorID).Single().Products_Services;
+        //            foreach (var vendor in vendors)
+        //            {
+        //                foreach (var item in products_services)
+        //                {
+        //                    var evaluations = new List<EvaluationViewModel>();
+        //                    var evaluation = new EvaluationViewModel();
+        //                    evaluation.ProductName = item.product_name;
+        //                    evaluation.Evaluated = item.Evaluated;
+        //                    evaluation.departmental_evaluation = item.departmental_evaluation;
+        //                    evaluation.CompanyName = item.Vendor.company_name;
+        //                    evaluation.DepartmentName = item.Department.department_name;
+        //                    evaluation.Date_Delivered = item.Date_delivered;
+        //                    evaluation.product_id = item.product_serviceID;
+        //                    evaluation.vendorId = item.vendorID;
+        //                    var criteria = await _context.Criteria.ToListAsync();
+
+        //                    var totalscore = (double)(criteria.Count() * 6);
+        //                    var evaluationscore = item.Evaluations.Select(a => ((int)a.Grade));
+
+        //                    var evaluationscorecriteria = evaluationscore.Sum();
+        //                    evaluation.Score = evaluationscorecriteria;
+        //                    var total_evaluation_score = (double)(evaluationscorecriteria / totalscore);
+        //                    evaluation.Percentage = Math.Round((double)(total_evaluation_score * 100));
+        //                    evaluations.Add(evaluation);
+        //                    ViewData["Score"] = evaluation.Score;
+
+
+        //                }
+
+        //        }
+
+        //    }
+
+
+
+        //        ViewData["vendorID"] = vendorID.Value;
+
+        //        //ViewData["venID"] = new SelectList(_context.Vendors, "vendorID", "vendorID");
+        //    return View(vendor_check);
+        //}
+
         public async Task<IActionResult> Vendor_Check(int? id, int? vendorID)
         {
             var vendor_check = new VendorEvaluation();
@@ -160,9 +235,9 @@ namespace GMTVendorEvaluationWebApp.Controllers
                     .ThenInclude(x => x.Evaluations)
                 .Include(x => x.Products_Services)
                     .ThenInclude(x => x.Department)
-                    
+
                 .AsNoTracking().ToListAsync();
-            foreach(var item in vendor_check.Vendors)
+            foreach (var item in vendor_check.Vendors)
             {
                 var vendor_evaluate = new VendorEvaluation();
                 vendor_evaluate.CompanyName = item.company_name;
@@ -179,7 +254,6 @@ namespace GMTVendorEvaluationWebApp.Controllers
             return View(vendor_check);
         }
 
-        
         // GET: Vendor/Details/5
         public async Task<IActionResult> Details(int? id)
         {
