@@ -16,7 +16,7 @@ namespace GMTVendorEvaluationWebApp.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("GMTVendorEvaluationWebApp.Models.Criteria", b =>
@@ -65,6 +65,9 @@ namespace GMTVendorEvaluationWebApp.Migrations
                     b.Property<int>("criteriaID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("departmental_evaluation")
+                        .HasColumnType("bit");
+
                     b.Property<int>("product_serviceID")
                         .HasColumnType("int");
 
@@ -111,6 +114,21 @@ namespace GMTVendorEvaluationWebApp.Migrations
                     b.ToTable("Product_Service");
                 });
 
+            modelBuilder.Entity("GMTVendorEvaluationWebApp.Models.UserRoles", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("GMTVendorEvaluationWebApp.Models.Vendor", b =>
                 {
                     b.Property<int>("vendorID")
@@ -147,6 +165,12 @@ namespace GMTVendorEvaluationWebApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumberOfProducts")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberofDepartments")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberofVendors")
                         .HasColumnType("int");
 
                     b.Property<double>("Percentage")

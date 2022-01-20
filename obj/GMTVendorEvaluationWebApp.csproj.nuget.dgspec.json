@@ -1,40 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj": {}
+    "C:\\Users\\taofeeal\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj": {
+    "C:\\Users\\taofeeal\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\taofeeal\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj",
         "projectName": "GMTVendorEvaluationWebApp",
-        "projectPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj",
-        "packagesPath": "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\gmt-vendor-evaluator\\obj\\",
+        "projectPath": "C:\\Users\\taofeeal\\Documents\\gmt-vendor-evaluator\\GMTVendorEvaluationWebApp.csproj",
+        "packagesPath": "C:\\Users\\taofeeal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\taofeeal\\Documents\\gmt-vendor-evaluator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Progress\\ToolboxNugetPackages"
+          "C:\\Program Files (x86)\\Progress\\ToolboxNugetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\ADEGUN FISAYO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\taofeeal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\ADEGUN FISAYO\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj": {
-                "projectPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj"
+              "C:\\Users\\taofeeal\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj": {
+                "projectPath": "C:\\Users\\taofeeal\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj"
               }
             }
           }
@@ -126,34 +126,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ADEGUN FISAYO\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj": {
+    "C:\\Users\\taofeeal\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADEGUN FISAYO\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj",
+        "projectUniqueName": "C:\\Users\\taofeeal\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj",
         "projectName": "EmailService",
-        "projectPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj",
-        "packagesPath": "C:\\Users\\ADEGUN FISAYO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADEGUN FISAYO\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\obj\\",
+        "projectPath": "C:\\Users\\taofeeal\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\EmailService.csproj",
+        "packagesPath": "C:\\Users\\taofeeal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\taofeeal\\Documents\\identity-aspnetcore-password-reset-identity\\IdentityByExamples\\EmailService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Progress\\ToolboxNugetPackages"
+          "C:\\Program Files (x86)\\Progress\\ToolboxNugetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\ADEGUN FISAYO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\taofeeal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -171,6 +171,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.95.4, )"
+            },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[3.1.0, )"
@@ -195,7 +199,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

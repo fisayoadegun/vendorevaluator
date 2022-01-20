@@ -91,10 +91,15 @@
                                 </td>
                                 <td>
                                     @{
-                                        if (!item.departmental_evaluation)
+                                        if (!item.Evaluated)
+                                        {
+                                            <p>Admin Evaluation not done</p>
+                                            <br />
+                                        }
+                                        else if (!item.departmental_evaluation)
+
                                         {
                                             <a class="btn btn-light btn-sm active" role="button" aria-pressed="true" asp-controller="Evaluation" asp-action="Email" asp-route-id="@item.product_id">Departmental Evaluation</a>
-                                            <br />
                                         }
                                     }
                                 </td>

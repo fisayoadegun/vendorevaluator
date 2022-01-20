@@ -7,39 +7,42 @@ using System.Threading.Tasks;
 
 namespace GMTVendorEvaluationWebApp.Models
 {
-    public enum Grade
-    {
-        [Display(Name = "Very Dissatisfied")]
-        Very_Dissatisfied = 1, 
+	public enum Grade
+	{
+		[Display(Name = "Very Dissatisfied")]
+		Very_Dissatisfied = 1,
 
+		Dissatisfied,
 
-        Dissatisfied,
+		[Display(Name = "Somewhat Dissatisfied")]
+		Somewhat_Dissatisfied,
 
-        [Display(Name = "Somewhat Dissatisfied")]
-        Somewhat_Dissatisfied,
+		[Display(Name = "Somewhat Satisfied")]
+		Somewhat_Satisfied,
 
-        [Display(Name = "Somewhat Satisfied")]
-        Somewhat_Satisfied, 
-        Satisfied,
+		Satisfied,
 
-        [Display(Name = "Very Satisfied")]
-        Very_Satisfied,
-    }
-    public class Evaluation
-    {
-        public int evaluationID { get; set; }
+		[Display(Name = "Very Satisfied")]
+		Very_Satisfied,
+	}
 
+	public class Evaluation
+	{
+		public int evaluationID { get; set; }
 
-        [Display(Name = "Product/Service")]
-        public int product_serviceID { get; set; }
+		[Display(Name = "Product/Service")]
+		public int product_serviceID { get; set; }
 
-        [Display(Name = "Criteria")]
-        public int criteriaID { get; set; }
+		[Display(Name = "Criteria")]
+		public int criteriaID { get; set; }
 
-        public Grade? Grade { get; set; }
+		public bool departmental_evaluation { get; set; }
 
-        [Display(Name = "Product/Service")]
-        public virtual Product_Service Product_Service { get; set; }
-        public virtual Criteria Criteria { get; set; }
-    }
+		public Grade? Grade { get; set; }
+
+		[Display(Name = "Product/Service")]
+		public virtual Product_Service Product_Service { get; set; }
+
+		public virtual Criteria Criteria { get; set; }
+	}
 }
