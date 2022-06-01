@@ -138,6 +138,64 @@ namespace GMTVendorEvaluationWebApp.Controllers
 			return View(vendor_evaluations.OrderByDescending(x => x.Percentage));
 		}
 
+		public async Task<IActionResult> Vendor_Performance_Filter(int? id, int? vendorID, DateTime start, DateTime end)
+		{
+			var vendor_evaluations = new List<VendorEvaluation>();			
+			var vendors = await _context.Vendors
+				.Include(x => x.Products_Services.Where(x => x.Date_delivered >= start && x.Date_delivered <= end))
+					.ThenInclude(x => x.Evaluations)
+						.ThenInclude(x => x.Criteria)
+				.Include(x => x.Products_Services)
+					.ThenInclude(x => x.Department)
+				.AsNoTracking().ToListAsync();
+
+			var st = start;
+			var en = end;
+
+			ViewBag.START = st.ToString("dd-MMM-yyyy");
+			ViewBag.END = en.ToString("dd-MMM-yyyy");
+
+			foreach (var item in vendors)
+			{
+				var vendor_evaluate = new VendorEvaluation();
+				vendor_evaluate.CompanyName = item.company_name;
+				vendor_evaluate.vendor_id = item.vendorID;
+				var criteria = await _context.Criteria.ToListAsync();
+				vendor_evaluate.NumberofVendors = vendors.Count();
+				vendor_evaluate.NumberOfProducts = _context.Products_Services.Where(x => x.Date_delivered >= start && x.Date_delivered <= end).Count();
+				vendor_evaluate.NumberofDepartments = _context.Departments.Count();
+				ViewData["vendor_count"] = vendor_evaluate.NumberofVendors;
+				ViewData["product_count"] = vendor_evaluate.NumberOfProducts;
+				ViewData["department_count"] = vendor_evaluate.NumberofDepartments;
+
+
+				var overallvendorscore = 0;
+
+
+				foreach (var product in item.Products_Services)
+				{
+					var totalscore = (double)(criteria.Count() * 6);
+
+					var evaluationscore = product.Evaluations.Select(a => ((int)a.Grade));
+
+					var evaluationscorecriteria = evaluationscore.Sum();
+					overallvendorscore += evaluationscorecriteria;
+				}
+
+				var sytemoverall = (double)(item.Products_Services.Count * 36);
+				var vendor_evaluation_score = (double)(overallvendorscore / sytemoverall);
+				vendor_evaluate.Percentage = Math.Round((double)(vendor_evaluation_score * 100));
+				if (double.Equals(double.NaN, vendor_evaluate.Percentage))
+					vendor_evaluate.Percentage = 0;
+				vendor_evaluate.NumberOfProducts = item.Products_Services.Count;
+				vendor_evaluations.Add(vendor_evaluate);							
+			}
+
+			ViewBag.PER = vendor_evaluations.OrderByDescending(x => x.Percentage).Select(x => x.Percentage).Take(5).ToList();
+			ViewBag.VENDORS = vendor_evaluations.OrderByDescending(x => x.Percentage).Select(x => x.CompanyName).Take(5).ToList();
+			return View(vendor_evaluations.OrderByDescending(x => x.Percentage));
+		}
+
 		//public async Task<IActionResult> Vendor_Check(int? id, int? vendorID)
 		//{
 		//    var vendor_check = new EvaluationViewModel();
