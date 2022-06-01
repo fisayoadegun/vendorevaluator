@@ -165,23 +165,8 @@ namespace GMTVendorEvaluationWebApp.Controllers
 
 			//ViewData["url"] = url;
 
-			//var message = new MimeMessage();
-			//message.From.Add(new MailboxAddress("GMT Vendor Evaluation", "Auto.Mail@gmt-limited.com"));
-			//message.To.Add(new MailboxAddress(departmentinfo.email));
-			//message.Subject = "GMT Vendor Evaluation Evaluation";
-			//message.Body = new BodyBuilder { HtmlBody = string.Format("<h3 style='color:black;'>Click on the link below to Evaluate this Product/Service({0}) delivered to your Department <hr /> {1}</h3>", productname, url) }.ToMessageBody();
-
-			//using (var client = new SmtpClient())
-			//{
-			//    client.Connect("smtp.office365.com", 587, false);
-			//    client.Authenticate("Auto.Mail@gmt-limited.com", "Hav!34iT");
-
-			//    client.Send(message);
-			//    client.Disconnect(true);
-			//}
-
 			var message = new MimeMessage();
-			message.From.Add(new MailboxAddress("GMT Vendor Evaluation", "fisayo.adegun@gmt-limited.com"));
+			message.From.Add(new MailboxAddress("GMT Vendor Evaluation", "Auto.Mail@gmt-limited.com"));
 			message.To.Add(new MailboxAddress(departmentinfo.email));
 			message.Subject = "GMT Vendor Evaluation Evaluation";
 			message.Body = new BodyBuilder { HtmlBody = string.Format("<h3 style='color:black;'>Click on the link below to Evaluate this Product/Service({0}) delivered to your Department <hr /> {1}</h3>", productname, url) }.ToMessageBody();
@@ -189,11 +174,26 @@ namespace GMTVendorEvaluationWebApp.Controllers
 			using (var client = new SmtpClient())
 			{
 				client.Connect("smtp.office365.com", 587, false);
-				client.Authenticate("fisayo.adegun@gmt-limited.com", "Surulere007");
+				client.Authenticate("Auto.Mail@gmt-limited.com", "Hav!34iT");
 
 				client.Send(message);
 				client.Disconnect(true);
 			}
+
+			//var message = new MimeMessage();
+			//message.From.Add(new MailboxAddress("GMT Vendor Evaluation", "fisayo.adegun@gmt-limited.com"));
+			//message.To.Add(new MailboxAddress(departmentinfo.email));
+			//message.Subject = "GMT Vendor Evaluation Evaluation";
+			//message.Body = new BodyBuilder { HtmlBody = string.Format("<h3 style='color:black;'>Click on the link below to Evaluate this Product/Service({0}) delivered to your Department <hr /> {1}</h3>", productname, url) }.ToMessageBody();
+
+			//using (var client = new SmtpClient())
+			//{
+			//	client.Connect("smtp.office365.com", 587, false);
+			//	client.Authenticate("fisayo.adegun@gmt-limited.com", "Surulere007");
+
+			//	client.Send(message);
+			//	client.Disconnect(true);
+			//}
 			return View();
 		}
 
