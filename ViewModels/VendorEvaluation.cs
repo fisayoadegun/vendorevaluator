@@ -14,7 +14,9 @@ namespace GMTVendorEvaluationWebApp.ViewModels
         
         public string CompanyName { get; set; }
 
-        public double Score { get; set; }
+		public IEnumerable<Product_Service> ProductName { get; set; }
+
+		public double Score { get; set; }
 
         public double Percentage { get; set; }
 

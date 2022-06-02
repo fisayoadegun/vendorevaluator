@@ -23,7 +23,9 @@ namespace GMTVendorEvaluationWebApp.Models
         public bool Evaluated { get; set; }
         public bool departmental_evaluation { get; set; }
 
-        public virtual IList<Evaluation> Evaluations { get; set; }
+		public double Percentage { get; set; }
+
+		public virtual IList<Evaluation> Evaluations { get; set; }
         public virtual Vendor Vendor { get; set; }
         public virtual Department Department { get; set; }
     }

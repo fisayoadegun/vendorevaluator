@@ -80,6 +80,28 @@ namespace GMTVendorEvaluationWebApp.Controllers
 
                 .FirstOrDefaultAsync(m => m.product_serviceID == id);
 
+            var evaluations = new List<EvaluationViewModel>();
+            
+            
+            var evaluation = new EvaluationViewModel();           
+
+            var criteria = await _context.Criteria.ToListAsync();
+
+            var totalscore = (double)(criteria.Count() * 6);
+
+            var evaluationscore = product_service.Evaluations.Select(a => ((int)a.Grade));
+
+            var evaluationscorecriteria = evaluationscore.Sum();
+            evaluation.Score = evaluationscorecriteria;
+            var total_evaluation_score = (double)(evaluationscorecriteria / totalscore);
+            evaluation.Percentage = Math.Round((double)(total_evaluation_score * 100));
+            product_service.Percentage = evaluation.Percentage;
+
+            
+
+            evaluations.Add(evaluation);            
+            
+
             if (product_service == null)
             {
                 return NotFound();

@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using OfficeOpenXml;
 using Microsoft.AspNetCore.Authorization;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace GMTVendorEvaluationWebApp.Controllers
 {
@@ -141,13 +143,14 @@ namespace GMTVendorEvaluationWebApp.Controllers
 		public async Task<IActionResult> Vendor_Performance_Filter(int? id, int? vendorID, DateTime start, DateTime end)
 		{
 			var vendor_evaluations = new List<VendorEvaluation>();			
-			var vendors = await _context.Vendors
+			var vendors = await _context.Vendors				
 				.Include(x => x.Products_Services.Where(x => x.Date_delivered >= start && x.Date_delivered <= end))
 					.ThenInclude(x => x.Evaluations)
 						.ThenInclude(x => x.Criteria)
 				.Include(x => x.Products_Services)
 					.ThenInclude(x => x.Department)
 				.AsNoTracking().ToListAsync();
+			var products = await _context.Products_Services.AsNoTracking().ToListAsync();
 
 			var st = start;
 			var en = end;
@@ -158,6 +161,10 @@ namespace GMTVendorEvaluationWebApp.Controllers
 			foreach (var item in vendors)
 			{
 				var vendor_evaluate = new VendorEvaluation();
+					{
+					vendor_evaluate.ProductName = item.Products_Services;					
+					};
+				
 				vendor_evaluate.CompanyName = item.company_name;
 				vendor_evaluate.vendor_id = item.vendorID;
 				var criteria = await _context.Criteria.ToListAsync();
@@ -180,7 +187,13 @@ namespace GMTVendorEvaluationWebApp.Controllers
 
 					var evaluationscorecriteria = evaluationscore.Sum();
 					overallvendorscore += evaluationscorecriteria;
-				}
+
+
+					//vendor_evaluate.ProductName = vendors.Where(x => x.Products_Services.Select(x => x.product_name));					
+
+				}				
+
+
 
 				var sytemoverall = (double)(item.Products_Services.Count * 36);
 				var vendor_evaluation_score = (double)(overallvendorscore / sytemoverall);
@@ -286,8 +299,36 @@ namespace GMTVendorEvaluationWebApp.Controllers
 				ViewData["venID"] = new SelectList(_context.Vendors, "vendorID", "vendorID");
 
 				vendor_check.Product_Services = vendor_check.Vendors.Where(
-					x => x.vendorID == vendorID).Single().Products_Services;
+					x => x.vendorID == vendorID).Single().Products_Services.OrderBy(x => x.Date_delivered);
 			}
+
+			var product_service = await _context.Products_Services
+				.Include(p => p.Vendor).Include(c => c.Department).Include(s => s.Evaluations)
+					.ThenInclude(e => e.Criteria).AsNoTracking()
+
+				.FirstOrDefaultAsync(m => m.product_serviceID == id);
+			var evaluations = new List<EvaluationViewModel>();
+			foreach (var item in vendor_check.Product_Services)
+			{
+				var evaluation = new EvaluationViewModel();
+
+				var criteria = await _context.Criteria.ToListAsync();
+
+				var totalscore = (double)(criteria.Count() * 6);
+
+				var evaluationscore = item.Evaluations.Select(a => ((int)a.Grade));
+
+				var evaluationscorecriteria = evaluationscore.Sum();
+				evaluation.Score = evaluationscorecriteria;
+				var total_evaluation_score = (double)(evaluationscorecriteria / totalscore);
+				evaluation.Percentage = Math.Round((double)(total_evaluation_score * 100));
+				item.Percentage = evaluation.Percentage;
+
+				evaluations.Add(evaluation);
+
+			}
+
+			
 
 			return View(vendor_check);
 		}

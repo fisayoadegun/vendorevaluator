@@ -231,70 +231,91 @@
                 </th>
                 <th>
                     Grade
+                </th>
+                <th>
+                    Products
+                </th>
 
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CompanyName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NumberOfProducts)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Percentage)%
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfProducts)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Percentage)%
+                </td>
 
-                    @{
+                @{
 
-                        if (item.Percentage >= 80 && item.Percentage <= 100)
-                        {
-                            <td style="background-color:green; color: white;">
-                                GREAT
-                            </td>
-                        }
-
-                        else if (item.Percentage >= 56 && item.Percentage <= 79)
-                        {
-                            <td style="background-color:blue; color:white;">
-                                GOOD
-                            </td>
-                        }
-
-                        else if (item.Percentage >= 46 && item.Percentage <= 55)
-                        {
-                            <td style="background-color:gold; color:white;">
-                                WATCHLIST
-                            </td>
-                        }
-                        else if (item.NumberOfProducts == 0)
-                        {
-                            <td>
-                                Vendor yet to be evaluated
-                            </td>
-                        }
-                        else
-                        {
-                            <td style="background-color:indianred; color: white;">
-                                REPLACE
-                            </td>
-                        }
-
-                @*<td>
-                    
-                            <a class=btn btn-info btn-sm active" role="button" aria-pressed="true">
-                    @Html.ActionLink("View Products/Services", "Vendor_Performance_Filter", new { vendorID = item.vendor_id })
-                     </a>
-
-                </td>*@
-
+                    if (item.Percentage >= 80 && item.Percentage <= 100)
+                    {
+                        <td style="background-color:green; color: white;">
+                            GREAT
+                        </td>
                     }
-                </tr>
+
+                    else if (item.Percentage >= 56 && item.Percentage <= 79)
+                    {
+                        <td style="background-color:blue; color:white;">
+                            GOOD
+                        </td>
+                    }
+
+                    else if (item.Percentage >= 46 && item.Percentage <= 55)
+                    {
+                        <td style="background-color:gold; color:white;">
+                            WATCHLIST
+                        </td>
+                    }
+                    else if (item.NumberOfProducts == 0)
+                    {
+                        <td>
+                            Vendor yet to be evaluated
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="background-color:indianred; color: white;">
+                            REPLACE
+                        </td>
+                    }
+
+            <td>
+                @foreach (var result in item.ProductName)
+                {
+                    @*<li>@result.product_name</li>*@
+                    @*<li><a asp-controller="Product_Service" asp-action="Details" asp-route-id="@result.product_serviceID">@result.product_name</a></li>*@ 
+                    <li><a href="@Url.Action("Details", "Product_Service", new { id = result.product_serviceID })"  target="_blank">@result.product_name</a></li>
+                }
+            </td>
+
+
+                    @*<td>
+
+                        <a class=btn btn-info btn-sm active" role="button" aria-pressed="true">
+                @Html.ActionLink("View Products/Services", "Vendor_Performance_Filter", new { vendorID = item.vendor_id })
+                 </a>
+
+            </td>*@
+
+                }
+
+            <td>
+                <br />
+               
+
+            </td>
+            </tr>
 
             }
+
         </tbody>
     </table>
     <hr />
