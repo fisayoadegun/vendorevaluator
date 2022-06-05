@@ -215,9 +215,9 @@
 
 
     <h1>Vendor Performance Table</h1>
-    <h2>Date Range: @ViewBag.START -- @ViewBag.END</h2>
+    <h4>Date Range: @ViewBag.START -- @ViewBag.END</h4>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." title="Type in a name">
-    <table class="table table-striped" id="myTable">
+    <table class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0" id="myTable">
         <thead>
             <tr>
                 <th>
@@ -256,22 +256,22 @@
 
                     if (item.Percentage >= 80 && item.Percentage <= 100)
                     {
-                        <td style="background-color:green; color: white;">
-                            GREAT
+                        <td>
+                            <button type="button" class="btn btn-success" disabled>GREAT</button>
                         </td>
                     }
 
                     else if (item.Percentage >= 56 && item.Percentage <= 79)
                     {
-                        <td style="background-color:blue; color:white;">
-                            GOOD
+                        <td>
+                            <button type="button" class="btn btn-primary" disabled>GOOD</button>
                         </td>
                     }
 
                     else if (item.Percentage >= 46 && item.Percentage <= 55)
                     {
-                        <td style="background-color:gold; color:white;">
-                            WATCHLIST
+                        <td>
+                            <button type="button" class="btn btn-info" disabled>WATCHLIST</button>
                         </td>
                     }
                     else if (item.NumberOfProducts == 0)
@@ -282,39 +282,37 @@
                     }
                     else
                     {
-                        <td style="background-color:indianred; color: white;">
-                            REPLACE
+                        <td>
+                            <button type="button" class="btn btn-danger" disabled>REPLACE</button>
                         </td>
                     }
 
-            <td>
-                @foreach (var result in item.ProductName)
-                {
-                    @*<li>@result.product_name</li>*@
-                    @*<li><a asp-controller="Product_Service" asp-action="Details" asp-route-id="@result.product_serviceID">@result.product_name</a></li>*@ 
-                    <li><a href="@Url.Action("Details", "Product_Service", new { id = result.product_serviceID })"  target="_blank">@result.product_name</a></li>
-                }
-            </td>
-
-
-                    @*<td>
-
-                        <a class=btn btn-info btn-sm active" role="button" aria-pressed="true">
-                @Html.ActionLink("View Products/Services", "Vendor_Performance_Filter", new { vendorID = item.vendor_id })
-                 </a>
-
-            </td>*@
-
                 }
 
-            <td>
-                <br />
+                <td>
+                    @foreach (var result in item.ProductName)
+                    {
+                        @*<li>@result.product_name</li>*@
+                        @*<li><a asp-controller="Product_Service" asp-action="Details" asp-route-id="@result.product_serviceID">@result.product_name</a></li>*@
+                        <li><a href="@Url.Action("Details", "Product_Service", new { id = result.product_serviceID })" target="_blank">@result.product_name</a></li>
+                    }
+                </td>
+
+
+                @*<td>
+
+                    <a class=btn btn-info btn-sm active" role="button" aria-pressed="true">
+            @Html.ActionLink("View Products/Services", "Vendor_Performance_Filter", new { vendorID = item.vendor_id })
+             </a>
+
+        </td>*@
+
+                
+
                
-
-            </td>
             </tr>
 
-            }
+                    }
 
         </tbody>
     </table>

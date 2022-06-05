@@ -22,7 +22,7 @@
     <script src="~/css/bootstrap.min.css"></script>
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
     <!-- Ionicons -->
-    
+
     <style>
         /*#chart_container {
             width: 800px;
@@ -70,7 +70,7 @@
             background: white;
         }
 
-        
+
         .content-wrapper {
             min-height: calc(100vh - 56px);
             padding-top: 4rem;
@@ -226,19 +226,19 @@
 
     <h1>Vendor Performance Table</h1>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." title="Type in a name">
-    <table class="table table-striped" id="myTable">
+    <table class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0" id="myTable">
         <thead>
-            <tr>
-                <th>
+            <tr class="table-info">
+                <th scope="row">
                     Vendor Name
                 </th>
-                <th>
+                <th scope="row">
                     Number of Product/Service Evaluated
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Percentage)
                 </th>
-                <th>
+                <th scope="row">
                     Grade
 
             </tr>
@@ -261,22 +261,22 @@
 
                         if (item.Percentage >= 80 && item.Percentage <= 100)
                         {
-                            <td style="background-color:green; color: white;">
-                                GREAT
+                            <td>
+                                <button type="button" class="btn btn-success" disabled>GREAT</button>
                             </td>
                         }
 
                         else if (item.Percentage >= 56 && item.Percentage <= 79)
                         {
-                            <td style="background-color:blue; color:white;">
-                                GOOD
+                            <td>
+                                <button type="button" class="btn btn-primary" disabled>GOOD</button>
                             </td>
                         }
 
                         else if (item.Percentage >= 46 && item.Percentage <= 55)
                         {
-                            <td style="background-color:gold; color:white;">
-                                WATCHLIST
+                            <td>
+                                <button type="button" class="btn btn-info" disabled>WATCHLIST</button>
                             </td>
                         }
                         else if (item.NumberOfProducts == 0)
@@ -287,8 +287,8 @@
                         }
                         else
                         {
-                            <td style="background-color:indianred; color: white;">
-                                REPLACE
+                            <td>
+                                <button type="button" class="btn btn-danger" disabled>REPLACE</button>
                             </td>
                         }
 
@@ -318,44 +318,47 @@
 
 </html>
 
+
+
 <script>
+
         var percentArray = @Html.Raw(Json.Serialize(ViewBag.PER));
         var vendors = @Html.Raw(Json.Serialize(ViewBag.VENDORS));
         var ctx = $("#mychart");
         var bar = new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: vendors,
-                datasets: [{
-                    label: "Vendor Performance",
-                    data: percentArray,
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                    //backgroundColor: [
-                    //    "rgba(74,25,92)",
-                    //    "rgba(74,25,92)",
-                    //    "rgba(74,25,92)",
-                    //    "rgba(74,25,92)",
-                    //    "rgba(74,25,92)",
+        type: "bar",
+        data: {
+        labels: vendors,
+        datasets: [{
+        label: "Vendor Performance",
+        data: percentArray,
+        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+        //backgroundColor: [
+        //    "rgba(74,25,92)",
+        //    "rgba(74,25,92)",
+        //    "rgba(74,25,92)",
+        //    "rgba(74,25,92)",
+        //    "rgba(74,25,92)",
 
-                    //    ],
-                    borderColor: ["rgb(242,266,54)", "rgb(142,65,72)", "rgb(74,25,92)"],
-                    //borderWidth: 1
-                }]
+        //    ],
+        borderColor: ["rgb(242,266,54)", "rgb(142,65,72)", "rgb(74,25,92)"],
+        //borderWidth: 1
+        }]
 
-            },
+        },
 
-            options: {
-                mainAspectRatio: false,
-                scales: { xAxes: [{ ticks: { beginAtZero: true } }] },
-                legend: { display: false },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Vendor Performance Chart'
-                    }
-                }
+        options: {
+        mainAspectRatio: false,
+        scales: { xAxes: [{ ticks: { beginAtZero: true } }] },
+        legend: { display: false },
+        plugins: {
+        title: {
+        display: true,
+        text: 'Vendor Performance Chart'
+        }
+        }
 
-            }
+        }
 
         });
 
@@ -410,6 +413,6 @@
             }
 
         }
-</script>        
+</script>
 
 
