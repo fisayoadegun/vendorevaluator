@@ -174,7 +174,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
 			using (var client = new SmtpClient())
 			{
 				client.Connect("smtp.office365.com", 587, false);
-				client.Authenticate("Auto.Mail@gmt-limited.com", "Hav!34iT");
+				client.Authenticate("**********", "************");
 
 				client.Send(message);
 				client.Disconnect(true);
