@@ -189,7 +189,7 @@ namespace GMTVendorEvaluationWebApp.Controllers
 			//using (var client = new SmtpClient())
 			//{
 			//	client.Connect("smtp.office365.com", 587, false);
-			//	client.Authenticate("fisayo.adegun@gmt-limited.com", "Surulere007");
+			//	client.Authenticate("fisayo.adegun@gmt-limited.com", "************");
 
 			//	client.Send(message);
 			//	client.Disconnect(true);
